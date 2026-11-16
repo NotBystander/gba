@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#4B0E0E">
+<title>红医药箱 · 我的十五五建功卡</title>
+<style>
+:root{
+  --gold:#C9A227; --gold-l:#E8C86A; --gold-pale:#F3DA92;
+  --paper:#F4EEE4; --muted:rgba(244,238,228,.56); --line:rgba(244,238,228,.13);
+  --red-1:#B52E2E; --red-2:#8E1B1B; --red-3:#A32626; --red-4:#6B0E0E;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#0B0808;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Helvetica Neue","Microsoft YaHei",sans-serif;}
+body{-webkit-font-smoothing:antialiased}
+#app{position:relative;width:100%;height:100%;max-width:520px;margin:0 auto;overflow:hidden;
+  background:radial-gradient(120% 80% at 50% 0%,#3A0B0B 0%,#180505 60%,#0B0808 100%);}
+.grain{position:absolute;inset:0;pointer-events:none;z-index:90;opacity:.5;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");}
+
+.page{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;
+  transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:calc(env(safe-area-inset-top) + 20px) 22px calc(env(safe-area-inset-bottom) + 20px);}
+.page.active{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+.eyebrow{font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.9}
+.sec-title{font-size:clamp(22px,6.4vw,28px);line-height:1.36;font-weight:800;color:var(--paper);letter-spacing:1px}
+.hint{font-size:11.5px;color:var(--muted);text-align:center;letter-spacing:.8px;line-height:1.75}
+
+.btn{width:100%;border:none;border-radius:999px;padding:16px;font-size:15.5px;font-weight:700;letter-spacing:2px;
+  cursor:pointer;font-family:inherit;transition:transform .2s,opacity .3s,box-shadow .3s;}
+.btn:active{transform:scale(.975)}
+.btn-primary{background:linear-gradient(135deg,#C9A227 0%,#E8C86A 55%,#C9A227 100%);color:#3A0A0A;
+  box-shadow:0 12px 32px rgba(201,162,39,.26),inset 0 1px 0 rgba(255,255,255,.4);}
+.btn-ghost{background:transparent;border:1px solid rgba(244,238,228,.22);color:var(--paper)}
+.btn-sm{padding:12px;font-size:13.5px;letter-spacing:1px}
+.btn[disabled]{opacity:.32;pointer-events:none;cursor:not-allowed}
+
+.media{position:relative;overflow:hidden;background:linear-gradient(155deg,#6B4A33 0%,#3E2617 45%,#1E1008 100%);}
+.media img{width:100%;height:100%;object-fit:cover;display:block}
+.media.fallback::after{content:attr(data-label);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:16px;font-size:11px;line-height:1.7;letter-spacing:1px;color:rgba(244,238,228,.5);
+  background:repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0 8px,transparent 8px 16px);}
+
+/* ========== P1 封面 ========== */
+.cover{flex:1;display:flex;flex-direction:column;min-height:100%}
+.cover-top{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--muted);padding-top:2px}
+.cover-top .dot{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:.7}
+.cover-main{padding:2.6vh 0 2vh}
+.cover-title{margin-top:12px;font-size:clamp(30px,9.4vw,42px);line-height:1.18;letter-spacing:2px;font-weight:900;color:var(--paper);
+  text-shadow:0 0 60px rgba(201,162,39,.25);}
+.cover-title em{font-style:normal;display:block;margin-top:6px;
+  background:linear-gradient(135deg,#F3DA92,#C9A227 70%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.cover-line{width:52px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:14px 0 10px;border-radius:2px}
+.cover-sub{font-size:12.5px;line-height:1.9;color:var(--muted);letter-spacing:.6px}
+
+.major-section{margin-top:18px}
+.major-title{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.major-title .mt-l{font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.9}
+.major-title .mt-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(201,162,39,.45),transparent);position:relative}
+.major-title .mt-line::after{content:"";position:absolute;right:0;top:-2px;width:5px;height:5px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 8px rgba(201,162,39,.9);animation:mtBlink 1.8s ease-in-out infinite}
+@keyframes mtBlink{0%,100%{opacity:.3}50%{opacity:1}}
+
+.major-cards{display:flex;flex-direction:column;gap:11px}
+.major-card{position:relative;border-radius:12px;padding:14px 14px 13px;overflow:hidden;
+  background:linear-gradient(150deg,rgba(30,10,10,.92),rgba(18,6,6,.96));
+  border:1px solid rgba(201,162,39,.18);
+  transition:border-color .35s,box-shadow .35s,transform .3s;}
+.major-card::before,.major-card::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none;
+  border-color:rgba(201,162,39,.4);transition:border-color .35s}
+.major-card::before{top:6px;left:6px;border-top:1.5px solid;border-left:1.5px solid;border-top-left-radius:4px}
+.major-card::after{bottom:6px;right:6px;border-bottom:1.5px solid;border-right:1.5px solid;border-bottom-right-radius:4px}
+.major-card .corner-tr,.major-card .corner-bl{position:absolute;width:14px;height:14px;pointer-events:none;
+  border-color:rgba(201,162,39,.4);transition:border-color .35s}
+.major-card .corner-tr{top:6px;right:6px;border-top:1.5px solid;border-right:1.5px solid;border-top-right-radius:4px}
+.major-card .corner-bl{bottom:6px;left:6px;border-bottom:1.5px solid;border-left:1.5px solid;border-bottom-left-radius:4px}
+.major-card .scan{position:absolute;left:0;right:0;height:1px;top:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(232,200,106,.7),transparent);
+  opacity:0;transition:opacity .3s}
+.major-card.scanning .scan{opacity:.6;animation:scanMove 3.4s linear infinite}
+@keyframes scanMove{0%{top:0;opacity:0}10%{opacity:.6}90%{opacity:.6}100%{top:100%;opacity:0}}
+.major-card.has-selected{border-color:rgba(201,162,39,.7);
+  box-shadow:0 0 0 1px rgba(201,162,39,.35),0 10px 30px rgba(201,162,39,.14),inset 0 0 30px rgba(201,162,39,.06);
+  transform:translateY(-1px);}
+.major-card.has-selected::before,.major-card.has-selected::after,
+.major-card.has-selected .corner-tr,.major-card.has-selected .corner-bl{border-color:var(--gold-l)}
+.major-card.has-selected .scan{opacity:.85;animation-duration:1.6s}
+
+.mc-head{display:flex;align-items:center;gap:9px;margin-bottom:10px;position:relative;z-index:2}
+.signal{display:flex;align-items:flex-end;gap:2px;height:12px;flex:none}
+.signal i{display:block;width:2.5px;background:rgba(201,162,39,.35);border-radius:1px;transition:background .3s}
+.signal i:nth-child(1){height:4px}.signal i:nth-child(2){height:7px}.signal i:nth-child(3){height:10px}.signal i:nth-child(4){height:12px}
+.major-card.has-selected .signal i{background:var(--gold-l);animation:signalPulse 1.4s ease-in-out infinite}
+.major-card.has-selected .signal i:nth-child(2){animation-delay:.15s}
+.major-card.has-selected .signal i:nth-child(3){animation-delay:.3s}
+.major-card.has-selected .signal i:nth-child(4){animation-delay:.45s}
+@keyframes signalPulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+.mc-name{font-size:13.5px;font-weight:700;color:var(--paper);letter-spacing:1px;flex:1}
+.mc-code{font-size:9px;letter-spacing:1.5px;color:rgba(201,162,39,.55);padding:2px 6px;border:1px solid rgba(201,162,39,.25);border-radius:3px}
+.major-card.has-selected .mc-code{color:var(--gold-l);border-color:rgba(201,162,39,.6)}
+.mc-lock{font-size:10px;letter-spacing:1px;color:var(--gold-l);opacity:0;transform:translateX(4px);transition:all .3s}
+.major-card.has-selected .mc-lock{opacity:1;transform:none}
+
+.mc-chips{display:flex;flex-wrap:wrap;gap:6px;position:relative;z-index:2}
+.chip{padding:6px 11px;border-radius:4px;border:1px solid rgba(244,238,228,.12);
+  background:rgba(244,238,228,.025);
+  font-size:12px;color:rgba(244,238,228,.66);cursor:pointer;transition:all .18s;letter-spacing:.4px;user-select:none}
+.chip:active{transform:scale(.96)}
+.chip.on{background:rgba(201,162,39,.92);border-color:var(--gold);color:#2A0606;font-weight:700;
+  box-shadow:0 2px 10px rgba(201,162,39,.4)}
+
+.cover-bottom{padding-top:16px}
+.hint-bottom{font-size:11px;color:var(--muted);text-align:center;letter-spacing:.6px;margin-top:10px;line-height:1.7}
+
+/* ========== P2 药箱盲盒 ========== */
+.box-stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;position:relative}
+.med-box-wrap{position:relative;width:200px;height:260px;perspective:900px;perspective-origin:center center;
+  animation:mbFloat 3.6s ease-in-out infinite;}
+@keyframes mbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.med-box-wrap:active{animation-play-state:paused}
+.med-box-wrap.tapped{animation:mbTap .35s ease}
+@keyframes mbTap{0%,100%{transform:scale(1)}40%{transform:scale(.96)}70%{transform:scale(1.02)}}
+
+.mb-handle{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:76px;height:34px;
+  border:4px solid #C9A227;border-bottom:none;border-radius:50px 50px 0 0;
+  background:linear-gradient(135deg,#E8C86A,#C9A227 50%,#8A6B12);
+  box-shadow:0 2px 4px rgba(0,0,0,.4);z-index:1;}
+
+.mb-lid{position:absolute;top:38px;left:0;right:0;height:96px;
+  background:linear-gradient(180deg,#C0392B 0%,#B52E2E 30%,#8E1B1B 100%);
+  border:2px solid #C9A227;border-radius:6px 6px 2px 2px;
+  transform-origin:center bottom;
+  transition:transform 1.1s cubic-bezier(.5,0,.2,1);
+  backface-visibility:hidden;z-index:2;
+  box-shadow:inset 0 2px 8px rgba(255,255,255,.15),inset 0 -20px 30px rgba(0,0,0,.3);}
+.mb-lid.open{transform:rotateX(-112deg)}
+.mb-lid::before,.mb-lid::after{content:"";position:absolute;width:16px;height:16px;
+  border:2px solid #E8C86A;pointer-events:none}
+.mb-lid::before{top:6px;left:6px;border-right:none;border-bottom:none;border-top-left-radius:3px}
+.mb-lid::after{top:6px;right:6px;border-left:none;border-bottom:none;border-top-right-radius:3px}
+
+.mb-cross-lid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:48px;height:48px;
+  background:
+    linear-gradient(#F4EEE4,#F4EEE4) center/13px 48px no-repeat,
+    linear-gradient(#F4EEE4,#F4EEE4) center/48px 13px no-repeat;
+  opacity:.95;filter:drop-shadow(0 1px 2px rgba(0,0,0,.4));}
+
+.mb-body{position:absolute;top:128px;left:0;right:0;bottom:0;
+  background:linear-gradient(180deg,#A32626 0%,#8B1A1A 40%,#5C0B0B 100%);
+  border:2px solid #C9A227;border-radius:2px 2px 6px 6px;
+  box-shadow:inset 0 -20px 30px rgba(0,0,0,.5),inset 0 4px 10px rgba(0,0,0,.3);
+  z-index:1;}
+.mb-body::before,.mb-body::after{content:"";position:absolute;width:16px;height:16px;
+  border:2px solid #E8C86A;pointer-events:none}
+.mb-body::before{bottom:6px;left:6px;border-right:none;border-top:none;border-bottom-left-radius:3px}
+.mb-body::after{bottom:6px;right:6px;border-left:none;border-top:none;border-bottom-right-radius:3px}
+
+.mb-cross-body{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);
+  width:48px;height:48px;
+  background:
+    linear-gradient(#F4EEE4,#F4EEE4) center/13px 48px no-repeat,
+    linear-gradient(#F4EEE4,#F4EEE4) center/48px 13px no-repeat;
+  opacity:.92;filter:drop-shadow(0 1px 2px rgba(0,0,0,.4));}
+
+.mb-clasp{position:absolute;top:110px;width:20px;height:16px;
+  background:linear-gradient(135deg,#F3DA92 0%,#C9A227 50%,#8A6B12 100%);
+  border-radius:3px;
+  transition:transform .5s cubic-bezier(.4,0,.2,1);
+  z-index:10;box-shadow:0 2px 4px rgba(0,0,0,.5);}
+.mb-clasp::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:4px;height:4px;border-radius:50%;background:#4B0E0E;}
+.mb-clasp-l{left:10px;transform-origin:left center}
+.mb-clasp-r{right:10px;transform-origin:right center}
+.med-box-wrap.opening .mb-clasp-l{transform:rotate(-50deg) translateX(-2px)}
+.med-box-wrap.opening .mb-clasp-r{transform:rotate(50deg) translateX(2px)}
+
+.mb-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:0;height:0;border-radius:50%;pointer-events:none;z-index:5;
+  background:radial-gradient(circle,rgba(243,218,146,1),rgba(232,200,106,.5) 30%,transparent 70%);}
+.mb-glow.burst{animation:mbGlow 1.6s ease-out forwards}
+@keyframes mbGlow{0%{width:0;height:0;opacity:0}20%{width:60px;height:60px;opacity:1}100%{width:800px;height:800px;opacity:0}}
+
+.mb-particle{position:absolute;width:6px;height:6px;border-radius:50%;
+  background:radial-gradient(circle,#F3DA92,#C9A227);
+  box-shadow:0 0 8px rgba(232,200,106,.9);pointer-events:none;z-index:6;}
+
+.box-caption{text-align:center;padding:0 24px}
+.box-caption b{display:block;font-size:16px;color:var(--paper);letter-spacing:2px;margin-bottom:8px;font-weight:700}
+.box-caption p{font-size:12px;color:var(--muted);letter-spacing:.6px;line-height:1.8}
+
+/* ========== P3 精神结果 ========== */
+.result-card{position:relative;border-radius:18px;padding:22px 20px;overflow:hidden;
+  background:linear-gradient(165deg,rgba(139,26,26,.55),rgba(60,10,10,.92));
+  border:1px solid rgba(201,162,39,.38);
+  box-shadow:0 22px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.08);}
+.result-card::before{content:"";position:absolute;top:-80px;right:-60px;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,39,.28),transparent 70%);pointer-events:none;}
+.card-media{position:relative;width:100%;height:136px;border-radius:11px;margin-bottom:16px;
+  border:1px solid rgba(201,162,39,.25);overflow:hidden;}
+.card-media .media{width:100%;height:100%;border-radius:11px}
+.card-media .tag{position:absolute;left:10px;bottom:9px;z-index:3;font-size:10px;letter-spacing:1px;
+  color:rgba(244,238,228,.85);background:rgba(11,8,8,.7);padding:4px 9px;border-radius:999px;backdrop-filter:blur(6px)}
+.gene-tag{display:inline-block;font-size:10.5px;letter-spacing:5px;color:rgba(201,162,39,.9);margin-bottom:10px}
+.gene-name{font-size:clamp(34px,10vw,46px);font-weight:900;letter-spacing:7px;line-height:1.2;
+  background:linear-gradient(135deg,#F3DA92,#C9A227 55%,#E8C86A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 4px 16px rgba(201,162,39,.35));}
+.gene-en{margin-top:8px;font-size:10.5px;letter-spacing:3px;color:rgba(244,238,228,.42)}
+.story-box{position:relative;z-index:2;padding:14px 16px;border-radius:11px;margin:14px 0 4px;
+  background:rgba(244,238,228,.055);border-left:3px solid rgba(201,162,39,.65);}
+.story-box p{font-size:14px;line-height:2;color:rgba(244,238,228,.87);letter-spacing:.4px}
+.story-box .attr{display:block;margin-top:9px;font-size:10.5px;color:rgba(244,238,228,.42);letter-spacing:1px;text-align:right}
+
+/* ========== P4 转盘 ========== */
+.wheel-stage{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:2px}
+.wheel-wrap{position:relative;width:min(78vw,320px);height:min(78vw,320px);margin-top:8px}
+.wheel-pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:15;width:0;height:0;
+  border-left:13px solid transparent;border-right:13px solid transparent;border-top:24px solid #E8C86A;
+  filter:drop-shadow(0 3px 8px rgba(0,0,0,.8));}
+.wheel-pointer::after{content:"";position:absolute;left:-13px;top:-18px;width:26px;height:26px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,200,106,.6),transparent 70%);animation:ptrPulse 1.8s ease-in-out infinite}
+@keyframes ptrPulse{0%,100%{transform:scale(.9);opacity:.5}50%{transform:scale(1.2);opacity:.9}}
+.wheel-svg{width:100%;height:100%;display:block;overflow:visible}
+.wheel-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;z-index:10;
+  background:radial-gradient(circle at 35% 30%,#F3DA92,#C9A227 60%,#8A6B12);
+  border:2px solid rgba(255,255,255,.5);
+  display:grid;place-items:center;font-size:12px;font-weight:900;color:#4B0E0E;line-height:1.25;text-align:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.7),0 0 0 4px rgba(11,8,8,.9),0 0 0 5px rgba(201,162,39,.4);
+  cursor:pointer;transition:transform .15s;letter-spacing:1px}
+.wheel-hub:active{transform:translate(-50%,-50%) scale(.93)}
+.wheel-hub.spinning{opacity:.55;pointer-events:none}
+.wheel-hub::after{content:"";position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid rgba(201,162,39,.5);animation:hubPulse 2.2s ease-out infinite;pointer-events:none}
+@keyframes hubPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+.map-tip{text-align:center;font-size:11.5px;color:var(--muted);letter-spacing:.8px;min-height:18px;padding:0 16px;line-height:1.6;margin-top:6px}
+
+/* 地点结果卡 */
+.place-panel{width:100%;margin-top:16px;padding:18px 18px 16px;border-radius:16px;
+  background:linear-gradient(160deg,rgba(201,162,39,.14),rgba(201,162,39,.03));
+  border:1px solid rgba(201,162,39,.4);
+  opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;display:none}
+.place-panel.anim{opacity:1;transform:none;display:block}
+.pp-city{font-size:11px;letter-spacing:5px;color:var(--gold);margin-bottom:6px}
+.pp-name{font-size:19px;font-weight:800;color:var(--paper);letter-spacing:1px;margin-bottom:10px;line-height:1.35}
+.pp-why{font-size:12.5px;line-height:1.9;color:rgba(244,238,228,.7);margin-bottom:14px}
+.pp-proj{font-size:11px;letter-spacing:1px;color:var(--gold-l);margin-bottom:12px;
+  padding:8px 12px;background:rgba(201,162,39,.1);border-radius:8px;border:1px dashed rgba(201,162,39,.35)}
+
+/* ========== P5 行动卡 ========== */
+.chain-card{position:relative;border-radius:18px;padding:24px 20px;overflow:hidden;
+  background:linear-gradient(165deg,rgba(139,26,26,.7),rgba(50,8,8,.92));
+  border:1px solid rgba(201,162,39,.42);
+  box-shadow:0 22px 50px rgba(0,0,0,.55);}
+.chain-card::before{content:"";position:absolute;top:-60px;left:-40px;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,39,.22),transparent 70%);pointer-events:none;}
+.chain-step{position:relative;z-index:2;display:flex;gap:12px;margin-bottom:16px}
+.step-num{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(201,162,39,.55);
+  display:grid;place-items:center;font-size:11px;font-weight:800;color:var(--gold-l);margin-top:1px}
+.step-body{flex:1}
+.step-body .lbl{font-size:10px;letter-spacing:3px;color:rgba(201,162,39,.78);margin-bottom:5px;display:block}
+.step-body .val{font-size:15.5px;line-height:1.7;color:rgba(244,238,228,.9);letter-spacing:.3px}
+.step-body .val b{color:var(--gold-l);font-weight:800}
+.chain-divider{position:relative;z-index:2;height:1px;background:linear-gradient(90deg,rgba(201,162,39,.35),transparent);margin:6px 0 18px}
+.action-main{position:relative;z-index:2;padding:18px;border-radius:13px;
+  background:rgba(201,162,39,.12);border:1px dashed rgba(201,162,39,.5);margin-bottom:16px}
+.action-main .lbl{font-size:10px;letter-spacing:3px;color:rgba(201,162,39,.9);margin-bottom:9px;display:block}
+.action-main p{font-size:18px;font-weight:800;line-height:1.75;color:var(--paper);letter-spacing:.4px}
+.chain-link{position:relative;z-index:2;font-size:12.5px;line-height:1.9;color:rgba(244,238,228,.65);
+  padding-top:14px;border-top:1px dashed rgba(201,162,39,.28);letter-spacing:.3px}
+.chain-link b{color:var(--gold-l)}
+
+/* ========== P6 海报 ========== */
+.poster-wrap{flex:1 1 0;min-height:0;display:flex;align-items:center;justify-content:center;padding:4px 0}
+#posterImg{max-height:100%;max-width:100%;border-radius:12px;display:block;
+  box-shadow:0 22px 56px rgba(0,0,0,.72),0 0 0 1px rgba(201,162,39,.22)}
+.poster-actions{display:flex;flex-direction:column;gap:8px;padding-top:12px}
+.code-box{display:flex;align-items:center;justify-content:center;gap:10px;padding:11px;border-radius:11px;
+  border:1px dashed rgba(201,162,39,.42);background:rgba(201,162,39,.08);margin-bottom:2px}
+.code-box span{font-size:11px;letter-spacing:2px;color:rgba(244,238,228,.62)}
+.code-box b{font-size:18px;letter-spacing:6px;color:var(--gold-l);font-weight:900}
+.share-row{display:flex;gap:8px}
+.share-row .btn{flex:1}
+
+#toast{position:absolute;left:50%;bottom:14%;transform:translate(-50%,20px);z-index:120;
+  padding:12px 22px;border-radius:999px;background:rgba(20,8,8,.95);border:1px solid rgba(201,162,39,.42);
+  color:var(--gold-l);font-size:13px;letter-spacing:1px;opacity:0;pointer-events:none;transition:all .35s ease;
+  white-space:normal;max-width:86%;text-align:center;line-height:1.6}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="grain"></div>
+
+  <!-- ================= P1 封面 ================= -->
+  <section class="page active" id="p1">
+    <div class="cover">
+      <div class="cover-top">
+        <span>广东医科大学 · 校团委</span>
+        <span class="dot"></span>
+        <span>十五五青年建功</span>
+      </div>
+
+      <div class="cover-main">
+        <p class="eyebrow">红医精神 · 湾区建功 · 我的十五五</p>
+        <h1 class="cover-title">打开药箱<em>领一张行动卡</em></h1>
+        <div class="cover-line"></div>
+        <p class="cover-sub">
+          选你的专业，打开红医药箱，<br>
+          转盘落到一处湾区阵地，<br>
+          最后领一件明天就能做的小事。
+        </p>
+
+        <div class="major-section">
+          <div class="major-title">
+            <span class="mt-l">专业接入</span>
+            <span class="mt-line"></span>
+          </div>
+          <div class="major-cards" id="majorCards"></div>
+        </div>
+      </div>
+
+      <div class="cover-bottom">
+        <button class="btn btn-primary" id="toBoxBtn" disabled>请先选择一个专业</button>
+        <p class="hint-bottom">全程约 60 秒 · 不收集个人信息</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= P2 药箱盲盒 ================= -->
+  <section class="page" id="p2">
+    <div style="padding-top:4px">
+      <p class="eyebrow">第二步 / 红医药箱</p>
+      <h2 class="sec-title" style="margin-top:10px">打开药箱，<br>随机封着一味红医精神。</h2>
+    </div>
+
+    <div class="box-stage">
+      <div class="med-box-wrap" id="medBox">
+        <div class="mb-handle"></div>
+        <div class="mb-lid" id="mbLid">
+          <div class="mb-cross-lid"></div>
+        </div>
+        <div class="mb-body">
+          <div class="mb-cross-body"></div>
+        </div>
+        <div class="mb-clasp mb-clasp-l"></div>
+        <div class="mb-clasp mb-clasp-r"></div>
+        <div class="mb-glow" id="mbGlow"></div>
+      </div>
+      <div class="box-caption">
+        <b>点击药箱 · 打开它</b>
+        <p>六味红医精神等概率出现<br>每一味都对应一段广东医校史</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= P3 精神结果 ================= -->
+  <section class="page" id="p3">
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;padding-top:2px">
+      <p class="eyebrow">第二步 / 你抽到的精神</p>
+
+      <div class="result-card">
+        <div class="card-media">
+          <div class="media" data-label="校史素材 · 待替换图片">
+            <img id="spiritImg" alt="" onerror="this.style.display='none';this.parentNode.classList.add('fallback')">
+          </div>
+          <span class="tag" id="spiritObjTag">校史锚点</span>
+        </div>
+        <div style="position:relative;z-index:2">
+          <span class="gene-tag">红 医 精 神</span>
+          <h2 class="gene-name" id="spiritName">政治坚定</h2>
+          <p class="gene-en" id="spiritEn">POLITICAL RESOLVE</p>
+        </div>
+        <div class="story-box">
+          <p id="spiritStory"></p>
+          <span class="attr" id="spiritAttr"></span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="toWheelBtn">下一步 · 转神秘大转盘</button>
+    </div>
+  </section>
+
+  <!-- ================= P4 转盘 ================= -->
+  <section class="page" id="p4">
+    <div style="padding-top:2px">
+      <p class="eyebrow">第三步 / 湾区神秘转盘</p>
+      <h2 class="sec-title" style="margin-top:8px">转一下，<br>落在哪个湾区坐标。</h2>
+    </div>
+
+    <div class="wheel-stage">
+      <div class="wheel-wrap">
+        <div class="wheel-pointer"></div>
+        <div id="wheelSvgWrap" style="width:100%;height:100%"></div>
+        <div class="wheel-hub" id="wheelHub">开始<br>转动</div>
+      </div>
+      <p class="map-tip" id="mapTip">18 个湾区坐标 · 为你锁定 3 个</p>
+
+      <div class="place-panel" id="placePanel">
+        <p class="pp-city" id="ppCity"></p>
+        <p class="pp-name" id="ppName"></p>
+        <p class="pp-why" id="ppWhy"></p>
+        <p class="pp-proj" id="ppProj"></p>
+        <button class="btn btn-primary" id="ppBtn">就在这里建功</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= P5 行动卡 ================= -->
+  <section class="page" id="p5">
+    <div style="flex:1;display:flex;flex-direction:column;gap:12px;padding-top:2px">
+      <p class="eyebrow">第四步 / 我的十五五建功卡</p>
+
+      <div class="chain-card">
+        <div class="chain-step">
+          <span class="step-num">1</span>
+          <div class="step-body">
+            <span class="lbl">你抽到的红医精神</span>
+            <p class="val"><b id="chainSpirit">救死扶伤</b></p>
+          </div>
+        </div>
+
+        <div class="chain-step">
+          <span class="step-num">2</span>
+          <div class="step-body">
+            <span class="lbl">转盘落到的湾区坐标</span>
+            <p class="val"><b id="chainPlace">深圳 · 深圳市急救中心</b></p>
+          </div>
+        </div>
+
+        <div class="chain-step">
+          <span class="step-num">3</span>
+          <div class="step-body">
+            <span class="lbl">你的专业</span>
+            <p class="val"><b id="chainMajor">护理学</b></p>
+          </div>
+        </div>
+
+        <div class="chain-divider"></div>
+
+        <div class="action-main">
+          <span class="lbl">十五五 · 你的第一件小事</span>
+          <p id="chainAction"></p>
+        </div>
+
+        <div class="chain-link" id="chainLink"></div>
+      </div>
+
+      <button class="btn btn-primary" id="toPosterBtn">生成我的建功海报</button>
+    </div>
+  </section>
+
+  <!-- ================= P6 海报与分享 ================= -->
+  <section class="page" id="p6">
+    <div class="poster-wrap">
+      <img id="posterImg" alt="我的十五五建功海报">
+    </div>
+    <div class="poster-actions">
+      <div class="code-box">
+        <span>分享码</span><b id="codeDisplay">---</b>
+      </div>
+      <p class="hint">长按上方图片保存到相册</p>
+      <div class="share-row">
+        <button class="btn btn-ghost btn-sm" id="saveTipBtn">保存海报</button>
+        <button class="btn btn-ghost btn-sm" id="copyBtn">复制文案</button>
+      </div>
+      <button class="btn btn-primary" id="sysShareBtn">分享到微信 / 小红书</button>
+      <button class="btn btn-ghost btn-sm" id="restartBtn">重新开一次</button>
+      <p class="hint" style="font-size:10.5px;line-height:1.7">
+        微信 / 小红书暂不支持网页一键直发，点击上方按钮复制文案后，<br>
+        打开对应 App 粘贴即可发布。海报请先长按保存。
+      </p>
+    </div>
+  </section>
+
+  <div id="toast"></div>
+</div>
+
+<script>
+/* =========================================================================
+   资源
+   ========================================================================= */
+const ASSETS = {
+  spiritImg: ['assets/img/spirit-1.jpg','assets/img/spirit-2.jpg','assets/img/spirit-3.jpg',
+              'assets/img/spirit-4.jpg','assets/img/spirit-5.jpg','assets/img/spirit-6.jpg']
+};
+
+/* =========================================================================
+   专业
+   ========================================================================= */
+const MAJORS = [
+  { group:'临床护理类', code:'CLIN', list:['临床医学','麻醉学','医学影像学','口腔医学','儿科学','精神医学','法医学','护理学','助产学'] },
+  { group:'药学医技类', code:'PHAR', list:['药学','临床药学','中药学','药物分析','医学检验技术','康复治疗学','医学实验技术','生物医学工程'] },
+  { group:'公卫人文类', code:'PUBH', list:['预防医学','卫生检验与检疫','食品质量与安全','公共事业管理','健康服务与管理','应用心理学','社会工作','英语'] }
+];
+
+/* =========================================================================
+   精神
+   ========================================================================= */
+const SPIRITS = [
+  { name:'政治坚定', en:'POLITICAL RESOLVE',
+    obj:'建校初期师生赴湛江合影',
+    story:'1958 年，一批青年教师从广州出发，带着几箱图书和实验器材，赴湛江参与筹建中山医学院湛江分院。没有校舍，先借房上课；没有教材，自己刻蜡版。他们把“到祖国需要的地方去”写进了第一份教案。',
+    attr:'校史馆藏 · 建校初期影像' },
+  { name:'技术优良', en:'EXCELLENT SKILL',
+    obj:'早期手绘解剖挂图',
+    story:'建校初期，解剖学教师没有现成挂图，便一笔一笔手绘。那些挂图在几间平房里挂了很多年，后来成为几代广东医学生共同的课堂记忆。',
+    attr:'校史馆藏 · 教学档案' },
+  { name:'无私奉献', en:'SELFLESS DEVOTION',
+    obj:'附属医院基层义诊登记本',
+    story:'从建校起，附属医院就把“到基层去”当成传统。一批批师生背着药箱下渔村、进农场，登记本上留下的是名字，背后是一次次不收一分钱的问诊。',
+    attr:'附属医院院志 · 基层服务卷' },
+  { name:'救死扶伤', en:'LIFESAVING DUTY',
+    obj:'急救培训现场照片',
+    story:'从抗击非典到支援抗疫，广东医科大学附属医院一批批医护人员写下请战书。有人推迟婚期，有人把孩子托付给父母，有人连续值守几十个小时。',
+    attr:'校史馆藏 · 请战书与影像' },
+  { name:'艰苦奋斗', en:'HARD STRUGGLE',
+    obj:'建校初期校舍老照片',
+    story:'湛江办学之初，师生一边上课一边建校。搬砖、和泥、修路，都是自己动手。第一代广东医人常说的一句话是：“先把课上好，别的慢慢来。”',
+    attr:'校志 · 建校卷' },
+  { name:'勇于开创', en:'PIONEERING SPIRIT',
+    obj:'新专业申报批文',
+    story:'从单一临床医学起步，学校陆续开出法医学、麻醉学、医学影像学等专业，每一次申报都是一次“从无到有”。敢开新专业，是因为湾区需要人。',
+    attr:'校志 · 专业建设卷' }
+];
+
+/* =========================================================================
+   湾区坐标：6 精神 × 3 地点 = 18 个
+   ========================================================================= */
+const PLACES = [
+  /* 0 政治坚定 */
+  [
+    { city:'东莞', name:'广东医科大学东莞校区校史陈列室', short:'校史陈列室',
+      why:'校史陈列室里存着 1958 年建校的第一批教案，写满了“到祖国需要的地方去”。',
+      proj:'校史陈列室 · 建校初心展',
+      projDesc:'校史讲解、建校故事采集、青年校史宣讲团。' },
+    { city:'广州', name:'团一大纪念馆', short:'团一大',
+      why:'中国青年运动的起点就在广州，你讲的每句话都接在同一条线上。',
+      proj:'团一大 · 青年运动史学习线',
+      projDesc:'青年运动史现场教学、红色宣讲志愿服务。' },
+    { city:'深圳', name:'前海深港青年梦工场', short:'前海梦工场',
+      why:'前海是深港青年创业第一站，你的一个故事可能成为另一位青年的起点。',
+      proj:'前海 · 深港青年创新创业基地',
+      projDesc:'深港青年创业服务、跨境青年交流项目。' }
+  ],
+  /* 1 技术优良 */
+  [
+    { city:'东莞', name:'松山湖科学城', short:'松山湖科学城',
+      why:'松山湖聚集了散裂中子源等大科学装置，技术在这里被推到极限。',
+      proj:'松山湖 · 大湾区科学城',
+      projDesc:'生命科学、生物医药、医疗器械研发平台。' },
+    { city:'深圳', name:'光明科学城', short:'光明科学城',
+      why:'光明科学城聚焦生命科学前沿，你的技能在这里有最严苛的检验场。',
+      proj:'光明 · 生命科学城',
+      projDesc:'脑科学、合成生物学、生物医药中试平台。' },
+    { city:'广州', name:'广州国际生物岛', short:'生物岛',
+      why:'生物岛上每平方公里聚集的生物医药企业密度全国领先。',
+      proj:'生物岛 · 生物医药产业基地',
+      projDesc:'新药研发、检验检测、医学检验实验室集群。' }
+  ],
+  /* 2 无私奉献 */
+  [
+    { city:'东莞', name:'广东医科大学附属东莞第一医院', short:'附属东莞一院',
+      why:'附院的义诊传统从建校延续至今，你接的是同一根接力棒。',
+      proj:'附院 · 基层义诊与志愿服务',
+      projDesc:'社区义诊、健康宣教、导诊志愿服务。' },
+    { city:'肇庆', name:'乡村振兴健康服务点', short:'百千万工程点',
+      why:'“百千万工程”把青年力量直接沉到乡镇，你的两小时就是一位村民的一颗定心丸。',
+      proj:'“百千万工程” · 健康帮扶',
+      projDesc:'乡镇卫生院帮扶、村居健康筛查、健康科普。' },
+    { city:'江门', name:'侨乡社区健康服务中心', short:'侨乡社康',
+      why:'侨乡老人多、子女在外，一次上门测血压就是一次真实的陪伴。',
+      proj:'侨乡 · 社区健康服务网络',
+      projDesc:'慢病管理、老年人健康档案、家庭医生签约协助。' }
+  ],
+  /* 3 救死扶伤 */
+  [
+    { city:'广州', name:'广州市急救医疗指挥中心', short:'广州120',
+      why:'广州 120 每天接警数千次，多一个会按压的人，就多一条命的机会。',
+      proj:'120 · 院前急救志愿服务',
+      projDesc:'急救知识普及、AED 推广、急救培训助教。' },
+    { city:'深圳', name:'深圳市急救中心', short:'深圳急救中心',
+      why:'深圳 AED 密度全国领先，但会用的人还不够多。你的一次教学，可能让某台 AED 真正被用上。',
+      proj:'深圳 · AED 全民急救计划',
+      projDesc:'AED 地图标注、社区急救培训、急救志愿者。' },
+    { city:'珠海', name:'万山群岛海岛医疗站', short:'海岛医疗站',
+      why:'海岛急救靠船、靠天、靠接力，你多会一项技能，岛上就多一分底气。',
+      proj:'海岛 · 远程医疗与急救转运',
+      projDesc:'海岛义诊、远程会诊协助、急救物资整理。' }
+  ],
+  /* 4 艰苦奋斗 */
+  [
+    { city:'惠州', name:'基层卫生院纵向帮扶点', short:'惠州帮扶点',
+      why:'基层卫生院最缺的不是设备，是能留下来带教的人。',
+      proj:'基层卫生院 · 对口帮扶',
+      projDesc:'教学查房协助、病历整理、健康宣教。' },
+    { city:'中山', name:'社区卫生服务中心', short:'中山社康',
+      why:'社区健康档案是公卫的地基，你整理的一页纸可能被用好几年。',
+      proj:'社区 · 基本公共卫生服务',
+      projDesc:'居民健康档案整理、慢病随访协助、健康讲座。' },
+    { city:'佛山', name:'南海区社区卫生服务站', short:'佛山社康',
+      why:'社康站是离居民最近的一公里，你的每一次记录都会变成一份健康底账。',
+      proj:'南海 · 社区卫生服务网络',
+      projDesc:'健康档案、慢病管理、家庭医生签约。' }
+  ],
+  /* 5 勇于开创 */
+  [
+    { city:'深圳', name:'河套深港科技创新合作区', short:'河套合作区',
+      why:'河套是深港科技创新的“一号工程”，你的一个小改进可能成为跨境合作的一个样本。',
+      proj:'河套 · 深港医学科技合作',
+      projDesc:'跨境医学研究、医疗器械创新、成果转化。' },
+    { city:'横琴', name:'粤澳合作中医药科技产业园', short:'横琴中医药园',
+      why:'中医药从这里走向世界，你的一张双语科普卡就是一次文化翻译。',
+      proj:'横琴 · 中医药科技产业园',
+      projDesc:'中药新药研发、中医药标准研究、国际注册。' },
+    { city:'东莞', name:'松山湖生物医药产业基地', short:'生物医药基地',
+      why:'从实验室到病床，松山湖是那段路最短的地方。',
+      proj:'松山湖 · 生物医药产业基地',
+      projDesc:'创新药研发、医疗器械中试、临床研究协助。' }
+  ]
+];
+
+/* =========================================================================
+   行动：6 精神 × 3 专业族 = 18 条
+   行动直接扣住“精神 × 专业”，不再依赖地点
+   ========================================================================= */
+const ACTIONS = [
+  /* 0 政治坚定 */
+  [
+    '在见习科室晨会上用 3 分钟讲一位广东医建校初期教师的选择，请带教老师点评一句。',
+    '在校史陈列室找一件教学实物，写 100 字说明，贴在药房或实验室学习角。',
+    '报名一次校史陈列室志愿讲解，只讲“1958 年第一批教案”这一件展品。'
+  ],
+  /* 1 技术优良 */
+  [
+    '在带教老师指导下完成一次规范操作示范（心肺复苏或无菌换药），录成 30 秒短视频。',
+    '为科室整理一份常用药或检验项目的“一页纸速查卡”，打印放在值班室。',
+    '做一张“大湾区健康数据”信息图，发在班级群或朋友圈。'
+  ],
+  /* 2 无私奉献 */
+  [
+    '为社区一位老人测一次血压或血糖，做一次用药提醒，留一张大字版提示卡。',
+    '设计一张“家庭小药箱整理指南”，打印贴在宿舍楼或社区公告栏。',
+    '报名一次校内外志愿服务（义诊、科普、导诊），至少服务 2 小时。'
+  ],
+  /* 3 救死扶伤 */
+  [
+    '教会身边 3 个人做胸外按压，并在校园里找到一台 AED，把位置标注出来。',
+    '在药房窗口贴一张 AED 位置图，向 3 位取药患者说明最近的 AED 在哪。',
+    '转发一条湾区急救培训报名信息，@ 一位同学一起报名，把时间记进日历。'
+  ],
+  /* 4 艰苦奋斗 */
+  [
+    '采访一位在基层工作 5 年以上的校友或医生，记录一句“最想对学弟学妹说的话”。',
+    '线上查资料，整理一份“基层卫生院常用药清单”，标注 3 个短缺品种。',
+    '走一遍学校所在城市的某个老街区，拍 3 张照片，写 100 字观察。'
+  ],
+  /* 5 勇于开创 */
+  [
+    '提出一个“让病房更温暖”的小改进（提示卡、流程优化、双语标识），写成一句话方案。',
+    '为一种常见药设计一张“患者看得懂”的用药说明卡（大字版），拍照留存。',
+    '发起一个“十五五 · 我的健康小目标”打卡，邀请 5 位同学参与。'
+  ]
+];
+
+/* =========================================================================
+   状态与工具
+   ========================================================================= */
+const state = { major:'', majorGroup:-1, spiritIndex:-1, placeIndex:-1, code:'' };
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function toast(msg){
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._timer); t._timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+function go(id){
+  if (id === 'p4') renderWheelPage();
+  if (id === 'p5') renderActionCard();
+  document.querySelectorAll('.page').forEach(p => { p.classList.remove('active'); p.scrollTop = 0; });
+  $(id).classList.add('active');
+}
+
+/* =========================================================================
+   P1 专业卡片
+   ========================================================================= */
+function renderMajors(){
+  $('majorCards').innerHTML = MAJORS.map((g, gi) => `
+    <div class="major-card scanning" data-g="${gi}">
+      <span class="corner-tr"></span><span class="corner-bl"></span>
+      <div class="scan"></div>
+      <div class="mc-head">
+        <div class="signal"><i></i><i></i><i></i><i></i></div>
+        <span class="mc-name">${g.group}</span>
+        <span class="mc-code">${g.code}</span>
+        <span class="mc-lock">已锁定</span>
+      </div>
+      <div class="mc-chips">
+        ${g.list.map(m => `<span class="chip" data-g="${gi}" data-m="${m}">${m}</span>`).join('')}
+      </div>
+    </div>`).join('');
+
+  $('majorCards').querySelectorAll('.chip').forEach(c => {
+    c.addEventListener('click', () => {
+      $('majorCards').querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+      $('majorCards').querySelectorAll('.major-card').forEach(x => x.classList.remove('has-selected'));
+      c.classList.add('on');
+      c.closest('.major-card').classList.add('has-selected');
+      state.major = c.dataset.m;
+      state.majorGroup = +c.dataset.g;
+      const btn = $('toBoxBtn');
+      btn.disabled = false;
+      btn.textContent = '已选 ' + state.major + ' · 打开红医药箱';
+    });
+  });
+}
+
+$('toBoxBtn').addEventListener('click', () => {
+  if (!state.major){ toast('请先选择一个专业'); return; }
+  go('p2');
+});
+
+/* =========================================================================
+   P2 药箱开箱
+   ========================================================================= */
+let boxOpening = false;
+
+$('medBox').addEventListener('click', function(){
+  if (boxOpening) return;
+  boxOpening = true;
+
+  const wrap = this;
+  wrap.classList.add('tapped');
+  setTimeout(() => wrap.classList.remove('tapped'), 350);
+
+  /* 1. 搭扣弹开 */
+  wrap.classList.add('opening');
+
+  /* 2. 盖子弹开 + 粒子 */
+  setTimeout(() => {
+    $('mbLid').classList.add('open');
+    spawnParticles(wrap);
+  }, 350);
+
+  /* 3. 金光爆发 */
+  setTimeout(() => {
+    $('mbGlow').classList.remove('burst');
+    void $('mbGlow').offsetWidth;
+    $('mbGlow').classList.add('burst');
+  }, 700);
+
+  /* 4. 抽取精神 + 跳转 */
+  setTimeout(() => {
+    state.spiritIndex = Math.floor(Math.random() * SPIRITS.length);
+    renderSpirit(state.spiritIndex);
+    go('p3');
+    /* 复位，下次回到 P2 可再开 */
+    setTimeout(() => {
+      wrap.classList.remove('opening');
+      $('mbLid').classList.remove('open');
+      $('mbGlow').classList.remove('burst');
+      boxOpening = false;
+    }, 800);
+  }, 1800);
+});
+
+function spawnParticles(parent){
+  const rect = parent.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height * 0.55;
+  for (let i = 0; i < 18; i++){
+    const p = document.createElement('div');
+    p.className = 'mb-particle';
+    document.body.appendChild(p);
+    const angle = (Math.PI * 2 * i) / 18 + Math.random() * 0.3;
+    const dist = 80 + Math.random() * 120;
+    const dx = Math.cos(angle) * dist;
+    const dy = Math.sin(angle) * dist - 40 - Math.random() * 40;
+    p.style.left = (cx - 3) + 'px';
+    p.style.top = (cy - 3) + 'px';
+    p.style.transition = 'transform 1.2s cubic-bezier(.15,.6,.3,1), opacity 1.2s ease';
+    p.style.position = 'fixed';
+    setTimeout(() => {
+      p.style.transform = `translate(${dx}px, ${dy}px) scale(0.3)`;
+      p.style.opacity = '0';
+    }, 10);
+    setTimeout(() => p.remove(), 1400);
+  }
+}
+
+/* =========================================================================
+   P3 精神结果
+   ========================================================================= */
+function setMedia(imgEl, src, label){
+  const wrap = imgEl.parentNode;
+  wrap.classList.remove('fallback');
+  imgEl.style.display = '';
+  imgEl.src = src;
+  wrap.setAttribute('data-label', label);
+  imgEl.onerror = function(){ this.style.display = 'none'; this.parentNode.classList.add('fallback'); };
+}
+
+function renderSpirit(i){
+  const s = SPIRITS[i];
+  setMedia($('spiritImg'), ASSETS.spiritImg[i], s.obj + '（待替换图片）');
+  $('spiritObjTag').textContent = s.obj;
+  $('spiritName').textContent = s.name;
+  $('spiritEn').textContent = s.en;
+  $('spiritStory').textContent = s.story;
+  $('spiritAttr').textContent = '—— ' + s.attr;
+}
+
+$('toWheelBtn').addEventListener('click', () => go('p4'));
+
+/* =========================================================================
+   P4 转盘：18 扇区轮流高亮，最后减速停在结果扇区
+   ========================================================================= */
+let spinning = false;
+
+function polar(cx, cy, r, deg){
+  const rad = (deg - 90) * Math.PI / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+}
+
+function buildWheelSVG(){
+  const cx = 160, cy = 160, r = 138;
+  const seg = 360 / 18;
+  let s = `<svg viewBox="0 0 320 320" class="wheel-svg" preserveAspectRatio="xMidYMid meet">`;
+
+  s += `<circle cx="${cx}" cy="${cy}" r="154" fill="#1A0505" stroke="rgba(201,162,39,.55)" stroke-width="2.5"/>`;
+  s += `<circle cx="${cx}" cy="${cy}" r="148" fill="none" stroke="rgba(201,162,39,.18)" stroke-width="1" stroke-dasharray="1 6"/>`;
+
+  for (let i = 0; i < 18; i++){
+    const a1 = i * seg, a2 = a1 + seg;
+    const p1 = polar(cx, cy, r, a1), p2 = polar(cx, cy, r, a2);
+    const spiritIdx = Math.floor(i / 3);
+    const isActive = (spiritIdx === state.spiritIndex);
+
+    const fill = isActive
+      ? ['#A32626','#8E1B1B','#B52E2E'][i % 3]
+      : '#2E0808';
+    const stroke = isActive ? 'rgba(201,162,39,.75)' : 'rgba(201,162,39,.12)';
+    const sw = isActive ? 1.5 : 0.6;
+
+    s += `<path d="M${cx},${cy} L${p1.x.toFixed(1)},${p1.y.toFixed(1)} A${r},${r} 0 0 1 ${p2.x.toFixed(1)},${p2.y.toFixed(1)} Z"
+      fill="${fill}" stroke="${stroke}" stroke-width="${sw}" class="sector" id="sector-${i}" data-i="${i}"/>`;
+
+    const mid = a1 + seg / 2;
+    const tp = polar(cx, cy, r * 0.75, mid);
+    if (isActive){
+      s += `<circle cx="${tp.x.toFixed(1)}" cy="${tp.y.toFixed(1)}" r="3" fill="rgba(243,218,146,.9)" class="sector-dot" id="dot-${i}" style="filter:drop-shadow(0 0 4px rgba(232,200,106,.9))"/>`;
+    } else {
+      s += `<circle cx="${tp.x.toFixed(1)}" cy="${tp.y.toFixed(1)}" r="1.4" fill="rgba(244,238,228,.15)"/>`;
+    }
+  }
+
+  /* 6 条精神边界线 */
+  for (let i = 0; i < 6; i++){
+    const a = i * 60;
+    const p = polar(cx, cy, r, a);
+    s += `<line x1="${cx}" y1="${cy}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}"
+      stroke="rgba(201,162,39,.55)" stroke-width="1.8"/>`;
+  }
+
+  s += `<circle cx="${cx}" cy="${cy}" r="62" fill="#1A0505" stroke="rgba(201,162,39,.35)" stroke-width="1.5"/>`;
+  s += `</svg>`;
+  return s;
+}
+
+/* 高亮：给指定扇区加 .hl */
+function highlightSector(i){
+  document.querySelectorAll('.sector').forEach(el => el.classList.remove('hl'));
+  const el = $('sector-' + i);
+  if (el) el.classList.add('hl');
+}
+
+function clearHighlight(){
+  document.querySelectorAll('.sector').forEach(el => el.classList.remove('hl'));
+}
+
+function renderWheelPage(){
+  const wrap = $('wheelSvgWrap');
+  wrap.innerHTML = buildWheelSVG();
+
+  spinning = false;
+  state.placeIndex = -1;
+  $('wheelHub').classList.remove('spinning');
+  $('wheelHub').innerHTML = '开始<br>转动';
+  $('mapTip').textContent = '18 个湾区坐标 · 为你锁定 3 个';
+  $('placePanel').classList.remove('anim');
+  $('placePanel').style.display = 'none';
+}
+
+$('wheelHub').addEventListener('click', () => {
+  if (spinning) return;
+  spinning = true;
+  $('wheelHub').classList.add('spinning');
+  $('

@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#4B0E0E">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<title>红医药箱 · 我的十五五建功卡</title>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<style>
+:root{
+  --gold:#C9A227; --gold-l:#E8C86A; --gold-pale:#F3DA92;
+  --paper:#F4EEE4; --muted:rgba(244,238,228,.56); --line:rgba(244,238,228,.13);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:#0B0808;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Helvetica Neue","Microsoft YaHei",sans-serif;}
+body{-webkit-font-smoothing:antialiased}
+#app{position:relative;width:100%;height:100%;max-width:520px;margin:0 auto;overflow:hidden;
+  background:radial-gradient(120% 80% at 50% 0%,#3A0B0B 0%,#180505 60%,#0B0808 100%);}
+.grain{position:absolute;inset:0;pointer-events:none;z-index:90;opacity:.5;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");}
+
+.page{position:absolute;inset:0;display:flex;flex-direction:column;opacity:0;pointer-events:none;
+  transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:calc(env(safe-area-inset-top) + 18px) 22px calc(env(safe-area-inset-bottom) + 20px);}
+.page.active{opacity:1;pointer-events:auto;transform:translateY(0)}
+
+.eyebrow{font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.9}
+.sec-title{font-size:clamp(22px,6.4vw,28px);line-height:1.36;font-weight:800;color:var(--paper);letter-spacing:1px}
+.hint{font-size:11.5px;color:var(--muted);text-align:center;letter-spacing:.8px;line-height:1.75}
+
+.btn{width:100%;border:none;border-radius:999px;padding:16px;font-size:15.5px;font-weight:700;letter-spacing:2px;
+  cursor:pointer;font-family:inherit;transition:transform .2s,opacity .3s,box-shadow .3s;}
+.btn:active{transform:scale(.975)}
+.btn-primary{background:linear-gradient(135deg,#C9A227 0%,#E8C86A 55%,#C9A227 100%);color:#3A0A0A;
+  box-shadow:0 12px 32px rgba(201,162,39,.26),inset 0 1px 0 rgba(255,255,255,.4);}
+.btn-ghost{background:transparent;border:1px solid rgba(244,238,228,.22);color:var(--paper)}
+.btn-sm{padding:12px;font-size:13.5px;letter-spacing:1px}
+.btn[disabled]{opacity:.32;pointer-events:none;cursor:not-allowed}
+
+.media{position:relative;overflow:hidden;background:linear-gradient(155deg,#6B4A33 0%,#3E2617 45%,#1E1008 100%);}
+.media img{width:100%;height:100%;object-fit:cover;display:block}
+.media.fallback::after{content:attr(data-label);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:16px;font-size:11px;line-height:1.7;letter-spacing:1px;color:rgba(244,238,228,.5);
+  background:repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0 8px,transparent 8px 16px);}
+
+/* ===== 不蒜子横幅 ===== */
+.hero-banner{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 14px;margin-bottom:12px;
+  border-radius:12px;
+  background:linear-gradient(135deg,rgba(201,162,39,.18),rgba(139,26,26,.35));
+  border:1px solid rgba(201,162,39,.42);
+  box-shadow:0 6px 20px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.08);
+  position:relative;overflow:hidden;
+}
+.hero-banner::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,#E8C86A,#C9A227);}
+.hero-banner::after{content:"";position:absolute;left:-50%;top:0;bottom:0;width:50%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);
+  animation:bannerShine 3.2s ease-in-out infinite;}
+@keyframes bannerShine{0%,100%{left:-50%}50%{left:100%}}
+.hb-icon{font-size:16px;color:var(--gold-l);flex:none;filter:drop-shadow(0 0 6px rgba(232,200,106,.6))}
+.hb-text{flex:1;font-size:12.5px;color:rgba(244,238,228,.82);letter-spacing:.5px;line-height:1.5;position:relative;z-index:1}
+.hb-num{font-size:15px;font-weight:900;color:var(--gold-l);letter-spacing:1px;margin:0 3px;
+  font-variant-numeric:tabular-nums;text-shadow:0 0 10px rgba(232,200,106,.4)}
+.hb-tag{font-size:9.5px;letter-spacing:2px;color:rgba(201,162,39,.7);border:1px solid rgba(201,162,39,.35);
+  padding:2px 6px;border-radius:3px;flex:none;position:relative;z-index:1}
+
+/* ========== P1 封面 ========== */
+.cover{flex:1;display:flex;flex-direction:column;min-height:100%}
+.cover-top{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--muted)}
+.cover-top .dot{width:3px;height:3px;border-radius:50%;background:var(--gold);opacity:.7}
+.cover-main{padding:2.4vh 0 2vh}
+.cover-title{margin-top:12px;font-size:clamp(30px,9.4vw,42px);line-height:1.18;letter-spacing:2px;font-weight:900;color:var(--paper);
+  text-shadow:0 0 60px rgba(201,162,39,.25);}
+.cover-title em{font-style:normal;display:block;margin-top:6px;
+  background:linear-gradient(135deg,#F3DA92,#C9A227 70%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.cover-line{width:52px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);margin:14px 0 10px;border-radius:2px}
+.cover-sub{font-size:12.5px;line-height:1.9;color:var(--muted);letter-spacing:.6px}
+
+.major-section{margin-top:18px}
+.btn-major-open{
+  width:100%;border:1px solid rgba(201,162,39,.42);border-radius:14px;
+  padding:20px 18px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  background:linear-gradient(150deg,rgba(201,162,39,.16),rgba(139,26,26,.32));
+  box-shadow:0 10px 30px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.08);
+  cursor:pointer;font-family:inherit;transition:transform .25s ease,box-shadow .25s ease;
+  position:relative;overflow:hidden;
+}
+.btn-major-open::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 50% 0%,rgba(232,200,106,.18),transparent 70%);
+}
+.btn-major-open:active{transform:scale(.98);box-shadow:0 4px 18px rgba(0,0,0,.4)}
+.mo-icon{font-size:20px;color:var(--gold-l);filter:drop-shadow(0 0 6px rgba(232,200,106,.65));line-height:1}
+.mo-text{font-size:16.5px;font-weight:800;color:var(--paper);letter-spacing:2px}
+.mo-sub{font-size:11px;color:var(--muted);letter-spacing:1px}
+
+.major-content{display:none}
+.major-content.open{display:block;animation:slideDown .45s cubic-bezier(.2,.9,.3,1)}
+@keyframes slideDown{
+  from{opacity:0;transform:translateY(-10px)}
+  to{opacity:1;transform:none}
+}
+.major-title{display:flex;align-items:center;gap:8px;margin-bottom:12px;margin-top:4px}
+.major-title .mt-l{font-size:11px;letter-spacing:4px;color:var(--gold);opacity:.9}
+.major-title .mt-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(201,162,39,.45),transparent);position:relative}
+.major-title .mt-line::after{content:"";position:absolute;right:0;top:-2px;width:5px;height:5px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 8px rgba(201,162,39,.9);animation:mtBlink 1.8s ease-in-out infinite}
+@keyframes mtBlink{0%,100%{opacity:.3}50%{opacity:1}}
+
+.major-cards{display:flex;flex-direction:column;gap:10px}
+.major-card{position:relative;border-radius:12px;padding:13px 14px;overflow:hidden;
+  background:linear-gradient(150deg,rgba(30,10,10,.92),rgba(18,6,6,.96));
+  border:1px solid rgba(201,162,39,.18);
+  transition:border-color .35s,box-shadow .35s,transform .3s;}
+.major-card::before,.major-card::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none;
+  border-color:rgba(201,162,39,.4);transition:border-color .35s}
+.major-card::before{top:6px;left:6px;border-top:1.5px solid;border-left:1.5px solid;border-top-left-radius:4px}
+.major-card::after{bottom:6px;right:6px;border-bottom:1.5px solid;border-right:1.5px solid;border-bottom-right-radius:4px}
+.major-card .corner-tr,.major-card .corner-bl{position:absolute;width:14px;height:14px;pointer-events:none;
+  border-color:rgba(201,162,39,.4);transition:border-color .35s}
+.major-card .corner-tr{top:6px;right:6px;border-top:1.5px solid;border-right:1.5px solid;border-top-right-radius:4px}
+.major-card .corner-bl{bottom:6px;left:6px;border-bottom:1.5px solid;border-left:1.5px solid;border-bottom-left-radius:4px}
+.major-card .scan{position:absolute;left:0;right:0;height:1px;top:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(232,200,106,.7),transparent);
+  opacity:0;transition:opacity .3s}
+.major-card.scanning .scan{opacity:.55;animation:scanMove 3.8s linear infinite}
+@keyframes scanMove{0%{top:0;opacity:0}10%{opacity:.55}90%{opacity:.55}100%{top:100%;opacity:0}}
+.major-card.has-selected{border-color:rgba(201,162,39,.7);
+  box-shadow:0 0 0 1px rgba(201,162,39,.35),0 10px 30px rgba(201,162,39,.14),inset 0 0 30px rgba(201,162,39,.06);
+  transform:translateY(-1px);}
+.major-card.has-selected::before,.major-card.has-selected::after,
+.major-card.has-selected .corner-tr,.major-card.has-selected .corner-bl{border-color:var(--gold-l)}
+.major-card.has-selected .scan{opacity:.85;animation-duration:1.8s}
+
+.mc-head{display:flex;align-items:center;gap:9px;margin-bottom:10px;position:relative;z-index:2}
+.signal{display:flex;align-items:flex-end;gap:2px;height:12px;flex:none}
+.signal i{display:block;width:2.5px;background:rgba(201,162,39,.35);border-radius:1px;transition:background .3s}
+.signal i:nth-child(1){height:4px}.signal i:nth-child(2){height:7px}.signal i:nth-child(3){height:10px}.signal i:nth-child(4){height:12px}
+.major-card.has-selected .signal i{background:var(--gold-l);animation:signalPulse 1.4s ease-in-out infinite}
+.major-card.has-selected .signal i:nth-child(2){animation-delay:.15s}
+.major-card.has-selected .signal i:nth-child(3){animation-delay:.3s}
+.major-card.has-selected .signal i:nth-child(4){animation-delay:.45s}
+@keyframes signalPulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+.mc-name{font-size:13.5px;font-weight:700;color:var(--paper);letter-spacing:1px;flex:1}
+.mc-code{font-size:9px;letter-spacing:1.5px;color:rgba(201,162,39,.55);padding:2px 6px;border:1px solid rgba(201,162,39,.25);border-radius:3px}
+.major-card.has-selected .mc-code{color:var(--gold-l);border-color:rgba(201,162,39,.6)}
+.mc-lock{font-size:10px;letter-spacing:1px;color:var(--gold-l);opacity:0;transform:translateX(4px);transition:all .3s}
+.major-card.has-selected .mc-lock{opacity:1;transform:none}
+
+.mc-chips{display:flex;flex-wrap:wrap;gap:6px;position:relative;z-index:2}
+.chip{padding:6px 11px;border-radius:4px;border:1px solid rgba(244,238,228,.12);
+  background:rgba(244,238,228,.025);
+  font-size:12px;color:rgba(244,238,228,.66);cursor:pointer;transition:all .18s;letter-spacing:.4px;user-select:none}
+.chip:active{transform:scale(.96)}
+.chip.on{background:rgba(201,162,39,.92);border-color:var(--gold);color:#2A0606;font-weight:700;
+  box-shadow:0 2px 10px rgba(201,162,39,.4)}
+
+.cover-bottom{padding-top:14px}
+.hint-bottom{font-size:11px;color:var(--muted);text-align:center;letter-spacing:.6px;margin-top:10px;line-height:1.7}
+
+/* ========== P2 药箱 ========== */
+.box-stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px}
+.med-box-wrap{position:relative;width:200px;height:260px;perspective:900px;
+  animation:mbFloat 3.6s ease-in-out infinite;cursor:pointer}
+@keyframes mbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.med-box-wrap.tapped{animation:mbTap .35s ease}
+@keyframes mbTap{0%,100%{transform:scale(1)}40%{transform:scale(.96)}70%{transform:scale(1.02)}}
+
+.mb-handle{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:76px;height:34px;
+  border:4px solid #C9A227;border-bottom:none;border-radius:50px 50px 0 0;
+  background:linear-gradient(135deg,#E8C86A,#C9A227 50%,#8A6B12);
+  box-shadow:0 2px 4px rgba(0,0,0,.4);z-index:1;}
+.mb-lid{position:absolute;top:38px;left:0;right:0;height:96px;
+  background:linear-gradient(180deg,#C0392B 0%,#B52E2E 30%,#8E1B1B 100%);
+  border:2px solid #C9A227;border-radius:6px 6px 2px 2px;
+  transform-origin:center bottom;
+  transition:transform 1.1s cubic-bezier(.5,0,.2,1);
+  backface-visibility:hidden;z-index:2;
+  box-shadow:inset 0 2px 8px rgba(255,255,255,.15),inset 0 -20px 30px rgba(0,0,0,.3);}
+.mb-lid.open{transform:rotateX(-112deg)}
+.mb-lid::before,.mb-lid::after{content:"";position:absolute;width:16px;height:16px;
+  border:2px solid #E8C86A;pointer-events:none}
+.mb-lid::before{top:6px;left:6px;border-right:none;border-bottom:none;border-top-left-radius:3px}
+.mb-lid::after{top:6px;right:6px;border-left:none;border-bottom:none;border-top-right-radius:3px}
+
+.mb-body{position:absolute;top:128px;left:0;right:0;bottom:0;
+  background:linear-gradient(180deg,#A32626 0%,#8B1A1A 40%,#5C0B0B 100%);
+  border:2px solid #C9A227;border-radius:2px 2px 6px 6px;
+  box-shadow:inset 0 -20px 30px rgba(0,0,0,.5),inset 0 4px 10px rgba(0,0,0,.3);
+  z-index:1;}
+.mb-body::before,.mb-body::after{content:"";position:absolute;width:16px;height:16px;
+  border:2px solid #E8C86A;pointer-events:none}
+.mb-body::before{bottom:6px;left:6px;border-right:none;border-top:none;border-bottom-left-radius:3px}
+.mb-body::after{bottom:6px;right:6px;border-left:none;border-top:none;border-bottom-right-radius:3px}
+.mb-cross-body{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);
+  width:48px;height:48px;
+  background:
+    linear-gradient(#F4EEE4,#F4EEE4) center/13px 48px no-repeat,
+    linear-gradient(#F4EEE4,#F4EEE4) center/48px 13px no-repeat;
+  opacity:.92;filter:drop-shadow(0 1px 2px rgba(0,0,0,.4));}
+
+.mb-clasp{position:absolute;top:110px;width:20px;height:16px;
+  background:linear-gradient(135deg,#F3DA92 0%,#C9A227 50%,#8A6B12 100%);
+  border-radius:3px;
+  transition:transform .5s cubic-bezier(.4,0,.2,1);
+  z-index:10;box-shadow:0 2px 4px rgba(0,0,0,.5);}
+.mb-clasp::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:4px;height:4px;border-radius:50%;background:#4B0E0E;}
+.mb-clasp-l{left:10px;transform-origin:left center}
+.mb-clasp-r{right:10px;transform-origin:right center}
+.med-box-wrap.opening .mb-clasp-l{transform:rotate(-50deg) translateX(-2px)}
+.med-box-wrap.opening .mb-clasp-r{transform:rotate(50deg) translateX(2px)}
+
+.mb-glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:0;height:0;border-radius:50%;pointer-events:none;z-index:5;
+  background:radial-gradient(circle,rgba(243,218,146,1),rgba(232,200,106,.5) 30%,transparent 70%);}
+.mb-glow.burst{animation:mbGlow 1.6s ease-out forwards}
+@keyframes mbGlow{0%{width:0;height:0;opacity:0}20%{width:60px;height:60px;opacity:1}100%{width:800px;height:800px;opacity:0}}
+
+.mb-particle{position:fixed;width:6px;height:6px;border-radius:50%;
+  background:radial-gradient(circle,#F3DA92,#C9A227);
+  box-shadow:0 0 8px rgba(232,200,106,.9);pointer-events:none;z-index:6;}
+
+.box-caption{text-align:center;padding:0 24px}
+.box-caption b{display:block;font-size:16px;color:var(--paper);letter-spacing:2px;margin-bottom:8px;font-weight:700}
+.box-caption p{font-size:12px;color:var(--muted);letter-spacing:.6px;line-height:1.8}
+
+/* ========== P3 精神结果 ========== */
+.result-card{position:relative;border-radius:18px;padding:22px 20px;overflow:hidden;
+  background:linear-gradient(165deg,rgba(139,26,26,.55),rgba(60,10,10,.92));
+  border:1px solid rgba(201,162,39,.38);
+  box-shadow:0 22px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.08);}
+.result-card::before{content:"";position:absolute;top:-80px;right:-60px;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,39,.28),transparent 70%);pointer-events:none;}
+.card-media{position:relative;width:100%;height:136px;border-radius:11px;margin-bottom:16px;
+  border:1px solid rgba(201,162,39,.25);overflow:hidden;}
+.card-media .media{width:100%;height:100%;border-radius:11px}
+.card-media .tag{position:absolute;left:10px;bottom:9px;z-index:3;font-size:10px;letter-spacing:1px;
+  color:rgba(244,238,228,.85);background:rgba(11,8,8,.7);padding:4px 9px;border-radius:999px;backdrop-filter:blur(6px)}
+.gene-tag{display:inline-block;font-size:10.5px;letter-spacing:5px;color:rgba(201,162,39,.9);margin-bottom:10px}
+.gene-name{font-size:clamp(34px,10vw,46px);font-weight:900;letter-spacing:7px;line-height:1.2;
+  background:linear-gradient(135deg,#F3DA92,#C9A227 55%,#E8C86A);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 4px 16px rgba(201,162,39,.35));}
+.gene-en{margin-top:8px;font-size:10.5px;letter-spacing:3px;color:rgba(244,238,228,.42)}
+.story-box{position:relative;z-index:2;padding:14px 16px;border-radius:11px;margin:14px 0 4px;
+  background:rgba(244,238,228,.055);border-left:3px solid rgba(201,162,39,.65);}
+.story-box p{font-size:13.5px;line-height:1.95;color:rgba(244,238,228,.87);letter-spacing:.3px}
+.story-box .attr{display:block;margin-top:9px;font-size:10.5px;color:rgba(244,238,228,.42);letter-spacing:1px;text-align:right}
+
+/* ========== P4 转盘 ========== */
+.wheel-stage{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:2px}
+.wheel-wrap{position:relative;width:min(78vw,320px);height:min(78vw,320px);margin-top:6px}
+.wheel-pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:15;width:0;height:0;
+  border-left:13px solid transparent;border-right:13px solid transparent;border-top:24px solid #E8C86A;
+  filter:drop-shadow(0 3px 8px rgba(0,0,0,.8));}
+.wheel-pointer::after{content:"";position:absolute;left:-13px;top:-18px;width:26px;height:26px;border-radius:50%;
+  background:radial-gradient(circle,rgba(232,200,106,.6),transparent 70%);animation:ptrPulse 1.8s ease-in-out infinite}
+@keyframes ptrPulse{0%,100%{transform:scale(.9);opacity:.5}50%{transform:scale(1.2);opacity:.9}}
+.wheel-svg{width:100%;height:100%;display:block;overflow:visible}
+.sector{transition:fill .06s ease,stroke .1s ease,filter .06s ease}
+.sector.hl{fill:#F3DA92 !important;stroke:#FFF6D8 !important;stroke-width:2.2 !important;
+  filter:drop-shadow(0 0 8px rgba(243,218,146,.9))}
+.wheel-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;z-index:10;
+  background:radial-gradient(circle at 35% 30%,#F3DA92,#C9A227 60%,#8A6B12);
+  border:2px solid rgba(255,255,255,.5);
+  display:grid;place-items:center;font-size:12px;font-weight:900;color:#4B0E0E;line-height:1.25;text-align:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.7),0 0 0 4px rgba(11,8,8,.9),0 0 0 5px rgba(201,162,39,.4);
+  cursor:pointer;transition:transform .15s;letter-spacing:1px}
+.wheel-hub:active{transform:translate(-50%,-50%) scale(.93)}
+.wheel-hub.spinning{opacity:.55;pointer-events:none}
+.wheel-hub::after{content:"";position:absolute;inset:-4px;border-radius:50%;
+  border:1px solid rgba(201,162,39,.5);animation:hubPulse 2.2s ease-out infinite;pointer-events:none}
+@keyframes hubPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+.map-tip{text-align:center;font-size:11.5px;color:var(--muted);letter-spacing:.8px;min-height:18px;padding:0 16px;line-height:1.6;margin-top:6px}
+
+/* ===== 地点结果面板（加图片） ===== */
+.place-panel{width:100%;margin-top:16px;padding:0 0 18px;border-radius:16px;
+  background:linear-gradient(160deg,rgba(201,162,39,.14),rgba(201,162,39,.03));
+  border:1px solid rgba(201,162,39,.4);
+  opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease;display:none;
+  overflow:hidden;}
+.place-panel.anim{opacity:1;transform:none;display:block}
+.pp-img{position:relative;width:100%;height:150px;overflow:hidden;
+  background:linear-gradient(155deg,#5C3A22 0%,#2E1A0E 100%);}
+.pp-img .media{width:100%;height:100%;}
+.pp-img::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,transparent 50%,rgba(20,8,8,.85) 100%);}
+.pp-img-tag{position:absolute;left:12px;top:12px;z-index:3;font-size:10px;letter-spacing:2px;
+  color:rgba(244,238,228,.85);background:rgba(11,8,8,.68);padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px);
+  border:1px solid rgba(201,162,39,.3)}
+.pp-body{padding:16px 18px 0}
+.pp-city{font-size:11px;letter-spacing:5px;color:var(--gold);margin-bottom:6px}
+.pp-name{font-size:19px;font-weight:800;color:var(--paper);letter-spacing:1px;margin-bottom:12px;line-height:1.35}
+.pp-why{font-size:13px;line-height:1.95;color:rgba(244,238,228,.75);margin-bottom:14px;letter-spacing:.3px}
+.pp-proj{font-size:11.5px;letter-spacing:.5px;color:var(--gold-l);margin-bottom:12px;
+  padding:10px 13px;background:rgba(201,162,39,.1);border-radius:8px;border:1px dashed rgba(201,162,39,.35);
+  line-height:1.7}
+.pp-proj b{display:block;font-size:12.5px;color:var(--gold-pale);margin-bottom:4px;letter-spacing:.8px}
+.pp-goal{font-size:11.5px;line-height:1.8;color:rgba(244,238,228,.72);margin-bottom:16px;
+  padding:10px 13px;background:rgba(244,238,228,.05);border-radius:8px;border-left:2px solid rgba(201,162,39,.55);}
+.pp-goal b{display:block;font-size:10px;letter-spacing:3px;color:rgba(201,162,39,.9);margin-bottom:5px}
+.pp-body .btn{margin:0 18px;width:calc(100% - 36px)}
+
+/* ========== P5 行动卡 ========== */
+.chain-card{position:relative;border-radius:18px;padding:24px 20px;overflow:hidden;
+  background:linear-gradient(165deg,rgba(139,26,26,.7),rgba(50,8,8,.92));
+  border:1px solid rgba(201,162,39,.42);
+  box-shadow:0 22px 50px rgba(0,0,0,.55);}
+.chain-card::before{content:"";position:absolute;top:-60px;left:-40px;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,162,39,.22),transparent 70%);pointer-events:none;}
+.chain-step{position:relative;z-index:2;display:flex;gap:12px;margin-bottom:16px}
+.step-num{flex:none;width:26px;height:26px;border-radius:50%;border:1.5px solid rgba(201,162,39,.55);
+  display:grid;place-items:center;font-size:11px;font-weight:800;color:var(--gold-l);margin-top:1px}
+.step-body{flex:1}
+.step-body .lbl{font-size:10px;letter-spacing:3px;color:rgba(201,162,39,.78);margin-bottom:5px;display:block}
+.step-body .val{font-size:15.5px;line-height:1.7;color:rgba(244,238,228,.9);letter-spacing:.3px}
+.step-body .val b{color:var(--gold-l);font-weight:800}
+.chain-divider{position:relative;z-index:2;height:1px;background:linear-gradient(90deg,rgba(201,162,39,.35),transparent);margin:6px 0 18px}
+.action-main{position:relative;z-index:2;padding:18px;border-radius:13px;
+  background:rgba(201,162,39,.12);border:1px dashed rgba(201,162,39,.5);margin-bottom:14px}
+.action-main .lbl{font-size:10px;letter-spacing:3px;color:rgba(201,162,39,.9);margin-bottom:9px;display:block}
+.action-main p{font-size:17px;font-weight:800;line-height:1.75;color:var(--paper);letter-spacing:.4px}
+
+/* 长期目标 */
+.long-goal{position:relative;z-index:2;padding:16px 18px;border-radius:13px;
+  background:rgba(244,238,228,.055);border:1px solid rgba(201,162,39,.32);margin-bottom:16px}
+.long-goal .lbl{font-size:10px;letter-spacing:3px;color:rgba(201,162,39,.9);margin-bottom:9px;display:block}
+.long-goal p{font-size:13.5px;line-height:1.95;color:rgba(244,238,228,.85);letter-spacing:.3px}
+
+.chain-link{position:relative;z-index:2;font-size:12.5px;line-height:1.9;color:rgba(244,238,228,.65);
+  padding-top:14px;border-top:1px dashed rgba(201,162,39,.28);letter-spacing:.3px}
+.chain-link b{color:var(--gold-l)}
+
+/* ========== P6 海报 ========== */
+.poster-wrap{flex:1 1 0;min-height:0;display:flex;align-items:center;justify-content:center;padding:4px 0}
+#posterImg{max-height:100%;max-width:100%;border-radius:12px;display:block;
+  box-shadow:0 22px 56px rgba(0,0,0,.72),0 0 0 1px rgba(201,162,39,.22)}
+.poster-actions{display:flex;flex-direction:column;gap:8px;padding-top:12px}
+.code-box{display:flex;align-items:center;justify-content:center;gap:10px;padding:11px;border-radius:11px;
+  border:1px dashed rgba(201,162,39,.42);background:rgba(201,162,39,.08);margin-bottom:2px}
+.code-box span{font-size:11px;letter-spacing:2px;color:rgba(244,238,228,.62)}
+.code-box b{font-size:18px;letter-spacing:6px;color:var(--gold-l);font-weight:900}
+.share-row{display:flex;gap:8px}
+.share-row .btn{flex:1}
+
+#toast{position:absolute;left:50%;bottom:14%;transform:translate(-50%,20px);z-index:120;
+  padding:12px 22px;border-radius:999px;background:rgba(20,8,8,.95);border:1px solid rgba(201,162,39,.42);
+  color:var(--gold-l);font-size:13px;letter-spacing:1px;opacity:0;pointer-events:none;transition:all .35s ease;
+  white-space:normal;max-width:86%;text-align:center;line-height:1.6}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* 不蒜子取值载体：库内 shows() 会强写 inline display:inline，
+   故必须用 !important + 零尺寸绝对定位彻底藏起来，只当数据源用 */
+#busuanzi_container_site_uv{display:none !important;
+  position:absolute !important;width:0;height:0;overflow:hidden;
+  clip:rect(0 0 0 0);clip-path:inset(50%);pointer-events:none}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="grain"></div>
+
+  <span id="busuanzi_container_site_uv"><span id="busuanzi_value_site_uv">0</span></span>
+
+  <!-- ================= P1 封面 ================= -->
+  <section class="page active" id="p1">
+    <div class="cover">
+
+      <div class="cover-main">
+        <div class="hero-banner">
+          <div class="hb-icon">✦</div>
+          <div class="hb-text">
+            已有<span class="hb-num" id="bannerCount1">--</span>位同学打开药箱
+          </div>
+          <div class="hb-tag">LIVE</div>
+        </div>
+
+        <p class="eyebrow">「医」箱情愿——我的十五五大湾区建功卡</p>
+        <h1 class="cover-title">"医"箱情愿<em>领一张十五五建功卡</em></h1>
+        <div class="cover-line"></div>
+        <p class="cover-sub">
+          选你的专业，打开红医药箱盲盒，<br>
+          转盘落到一处大湾区阵地，<br>
+          最后领一件明天就能做的建功小行动和长期规划。
+        </p>
+
+        <div class="major-section">
+          <button class="btn-major-open" id="openMajorBtn" type="button">
+            <span class="mo-icon">◈</span>
+            <span class="mo-text">"医"键选专业</span>
+            <span class="mo-sub">一键展开你的专业 开启建功旅程吧</span>
+          </button>
+
+          <div class="major-content" id="majorContent">
+            <div class="major-title">
+              <span class="mt-l">请选择你的专业</span>
+              <span class="mt-line"></span>
+            </div>
+            <div class="major-cards" id="majorCards"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cover-bottom">
+        <button class="btn btn-primary" id="toBoxBtn" disabled>请先"医"键选专业</button>
+        <p class="hint-bottom">全程约 60 秒 ，不收集个人信息</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= P2 药箱 ================= -->
+  <section class="page" id="p2">
+    <div style="padding-top:4px">
+      <p class="eyebrow">第二步 / "箱"遇红医</p>
+      <h2 class="sec-title" style="margin-top:10px">"箱"遇红医，<br>随机获取一味红医精神。</h2>
+    </div>
+
+    <div class="box-stage">
+      <div class="med-box-wrap" id="medBox">
+        <div class="mb-handle"></div>
+        <div class="mb-lid" id="mbLid"></div>
+        <div class="mb-body">
+          <div class="mb-cross-body"></div>
+        </div>
+        <div class="mb-clasp mb-clasp-l"></div>
+        <div class="mb-clasp mb-clasp-r"></div>
+        <div class="mb-glow" id="mbGlow"></div>
+      </div>
+      <div class="box-caption">
+        <b>点击药箱 · "医"探究竟</b>
+        <p>六大红医精神等概率出现<br>每一味都对应一段广东医校史</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= P3 精神结果 ================= -->
+  <section class="page" id="p3">
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px;padding-top:2px">
+      <p class="eyebrow">第二步 / "医"见如故</p>
+
+      <div class="result-card">
+        <div class="card-media">
+          <div class="media" data-label="校史素材 · 待替换图片">
+            <img id="spiritImg" alt="" onerror="this.style.display='none';this.parentNode.classList.add('fallback')">
+          </div>
+          <span class="tag" id="spiritObjTag">校史锚点</span>
+        </div>
+        <div style="position:relative;z-index:2">
+          <span class="gene-tag">"医"脉相承 · 红医精神</span>
+          <h2 class="gene-name" id="spiritName">政治坚定</h2>
+          <p class="gene-en" id="spiritEn">POLITICAL RESOLVE</p>
+        </div>
+        <div class="story-box">
+          <p id="spiritStory"></p>
+          <span class="attr" id="spiritAttr"></span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary" id="toWheelBtn">"湾"转乾坤 · 转神秘大转盘</button>
+    </div>
+  </section>
+
+  <!-- ================= P4 转盘 ================= -->
+  <section class="page" id="p4">
+    <div style="padding-top:2px">
+      <p class="eyebrow">第三步 / "湾"转乾坤</p>
+      <h2 class="sec-title" style="margin-top:8px">"湾"里挑一，<br>你会落在哪个湾区坐标呢？</h2>
+    </div>
+
+    <div class="wheel-stage">
+      <div class="wheel-wrap">
+        <div class="wheel-pointer"></div>
+        <div id="wheelSvgWrap" style="width:100%;height:100%"></div>
+        <div class="wheel-hub" id="wheelHub">"转"出<br>精彩</div>
+      </div>
+      <p class="map-tip" id="mapTip">18 个湾区坐标 "转"出你的十五五</p>
+
+      <div class="place-panel" id="placePanel">
+        <div class="pp-img">
+          <div class="media" data-label="湾区场景 · 待替换图片">
+            <img id="ppImg" alt="" onerror="this.style.display='none';this.parentNode.classList.add('fallback')">
+          </div>
+          <span class="pp-img-tag" id="ppImgTag">湾区坐标</span>
+        </div>
+        <div class="pp-body">
+          <p class="pp-city" id="ppCity"></p>
+          <p class="pp-name" id="ppName"></p>
+          <p class="pp-why" id="ppWhy"></p>
+          <div class="pp-proj">
+            <b id="ppProjName"></b>
+            <span id="ppProjDesc"></span>
+          </div>
+          <div class="pp-goal">
+            <b>十五五 · 长期目标</b>
+            <span id="ppGoal"></span>
+          </div>
+          <button class="btn btn-primary" id="ppBtn">"医"起建"湾"</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= P5 行动卡 ================= -->
+  <section class="page" id="p5">
+    <div style="flex:1;display:flex;flex-direction:column;gap:12px;padding-top:2px">
+      <p class="eyebrow">第四步 / "青"力"青"为</p>
+
+      <div class="chain-card">
+        <div class="chain-step">
+          <span class="step-num">1</span>
+          <div class="step-body">
+            <span class="lbl">你抽到的红医精神</span>
+            <p class="val"><b id="chainSpirit">政治坚定</b></p>
+          </div>
+        </div>
+
+        <div class="chain-step">
+          <span class="step-num">2</span>
+          <div class="step-body">
+            <span class="lbl">转盘落到的湾区坐标</span>
+            <p class="val"><b id="chainPlace">东莞 · 松山湖科学城</b></p>
+          </div>
+        </div>
+
+        <div class="chain-step">
+          <span class="step-num">3</span>
+          <div class="step-body">
+            <span class="lbl">你的专业</span>
+            <p class="val"><b id="chainMajor">护理学</b></p>
+          </div>
+        </div>
+
+        <div class="chain-divider"></div>
+
+        <div class="action-main">
+          <span class="lbl">十五五 · 你的第一件"医"事</span>
+          <p id="chainAction"></p>
+        </div>
+
+        <div class="long-goal">
+          <span class="lbl" id="chainGoalLbl">十五五 · 长期目标</span>
+          <p id="chainGoal"></p>
+        </div>
+
+        <div class="chain-link" id="chainLink"></div>
+      </div>
+
+      <button class="btn btn-primary" id="toPosterBtn">"医"图读懂 · 生成我的建功海报</button>
+    </div>
+  </section>
+
+  <!-- ================= P6 海报 ================= -->
+  <section class="page" id="p6">
+    <div class="hero-banner" style="margin-bottom:8px">
+      <div class="hb-icon">✦</div>
+      <div class="hb-text">
+        你是第<span class="hb-num" id="bannerCount2">--</span>位"箱"遇红医的同学
+      </div>
+      <div class="hb-tag">NO.</div>
+    </div>
+    <div class="poster-wrap">
+      <img id="posterImg" alt="我的十五五建功海报">
+    </div>
+    <div class="poster-actions">
+      <div class="code-box">
+        <span>分享码</span><b id="codeDisplay">---</b>
+      </div>
+      <p class="hint">长按上方"医"图保存到相册</p>
+      <div class="share-row">
+        <button class="btn btn-ghost btn-sm" id="saveTipBtn">保存"医"图</button>
+        <button class="btn btn-ghost btn-sm" id="copyBtn">复制"医"文</button>
+      </div>
+      <button class="btn btn-primary" id="sysShareBtn">"医"起分享</button>
+      <button class="btn btn-ghost btn-sm" id="restartBtn">再"箱"遇一次</button>
+      <p class="hint" style="font-size:10.5px;line-height:1.7">
+        微信 / 小红书暂不支持网页一键直发，点击上方按钮复制文案后，<br>
+        打开对应 App 粘贴即可发布。海报请先长按保存。
+      </p>
+    </div>
+  </section>
+
+  <div id="toast"></div>
+</div>
+
+<script>
+/* =========================================================================
+   资源
+   ========================================================================= */
+const ASSETS = {
+  spiritImg: [
+    'spirit-1.jpg',  /* 政治坚定 */
+    'spirit-2.jpg',  /* 技术优良 */
+    'spirit-3.jpg',  /* 无私奉献 */
+    'spirit-4.jpg',  /* 救死扶伤 */
+    'spirit-5.jpg',  /* 艰苦奋斗 */
+    'spirit-6.jpg'   /* 勇于开创 */
+  ],
+  placeImg: [
+    'place-songshanhu.jpg',  /* 0 松山湖 */
+    'place-hongkong.jpg',    /* 1 香港 */
+    'place-shenzhen.jpg'     /* 2 深圳 */
+  ]
+};
+
+/* =========================================================================
+   专业
+   ========================================================================= */
+const MAJORS = [
+  { group:'临床护理类', code:'CLIN', list:['临床医学','麻醉学','医学影像学','口腔医学','儿科学','精神医学','法医学','护理学','助产学'] },
+  { group:'药学医技类', code:'PHAR', list:['药学','临床药学','中药学','药物分析','医学检验技术','康复治疗学','医学实验技术','生物医学工程'] },
+  { group:'公卫人文类', code:'PUBH', list:['预防医学','卫生检验与检疫','食品质量与安全','公共事业管理','健康服务与管理','应用心理学','社会工作','英语'] }
+];
+
+/* =========================================================================
+   精神（200 字左右）
+   ========================================================================= */
+const SPIRITS = [
+  { name:'政治坚定', en:'POLITICAL RESOLVE',
+    obj:'中山医学院湛江分院',
+    attr:'校史馆藏 · 建校元老档案',
+    story:'广东医科大学建校元老高彪，在湘江战役中九死一生，带着幸存战友的期许走完长征，途中坚守战地救护，比战士多走一千里。抗战时期任白求恩医疗队副队长，与妻子谢文华并肩救护伤员，又历经辽沈、平津、渡江三大战役。1958年，他受命参与创建中山医学院湛江分院，从枪林弹雨转向白手起家办医学教育。从长征路上的战地救护，到粤西荒坡上的建校办学，长征精神与红医精神在他身上是可感可学的力量，吃苦耐劳、救死扶伤、甘于奉献都值得我们学习。' },
+
+  { name:'技术优良', en:'EXCELLENT SKILL',
+    obj:'老一辈教师手绘解剖挂图',
+    attr:'校史馆藏 · 教学档案',
+    story:'广东医科大学建校年代，国内医学院校普遍缺乏印刷教材、彩色图谱和成品模型，解剖学、组胚学等基础课程高度依赖视觉直观教学。老一辈教师在煤油灯下、在简陋的教研室里，用毛笔、钢笔和彩色颜料，在大幅白纸或布面上一笔一画临摹、放大、绘制人体解剖教学挂图，以此支撑起早期课堂。没有教材就自己画，没有图谱就自己描，一根血管、一条神经都不肯画错。把每一件专业的事做到准确、做到极致，才对得起病人的信任。' },
+
+  { name:'无私奉献', en:'SELFLESS DEVOTION',
+    obj:'师生下乡防治地方病',
+    attr:'校史馆藏 · 社会服务档案',
+    story:'广东医科大学建校伊始，师生便走出课堂，深入雷州半岛及粤西各县的农村、海岛与林场，参与疟疾、丝虫病、钩虫病等地方常见传染病的普查与群防群治。他们背着药箱走村串户，把课堂搬到田埂、渔船和橡胶林里，一村一村地查、一户一户地讲。因贡献突出，学校于1960年获评"全国文教战线先进单位"。无私奉献是那一代广东医人用脚底板一步步走出来的。' },
+
+  { name:'救死扶伤', en:'LIFESAVING DUTY',
+    obj:'何建猷教授抗击非典影像',
+    attr:'校史馆藏 · 社会服务档案',
+    story:'2003年春天，非典疫情来势汹汹。广东医科大学附属医院作为粤西地区医疗中心，承担了极其繁重的发热门诊筛查、疑似病例隔离和危重症救治任务。时年近六十的呼吸内科主任何建猷，被任命为湛江市非典医疗救护专家指导小组组长。尽管患有严重十二指肠溃疡、高脂血症和慢性支气管炎，面对同事退居二线的劝说，她依然每天穿梭于发热门诊与隔离病房之间，主持全院及全市疑难病例会诊。' },
+
+  { name:'艰苦奋斗', en:'HARD STRUGGLE',
+    obj:'湛江医学院毕业合照',
+    attr:'校史馆藏',
+    story:'1958年5月，学校从广州中山医学院抽调一批骨干教师与行政人员南下湛江建校。面对一片荒凉的校园选址，教职工们亲自参与平整土地、搬运建筑材料、搭设简易教学用房；首届医学生入学后也积极投入建校劳动，课余时间与老师一起修整校园道路、搬运砖瓦、参与绿化建设。师生同心、艰苦创业的这段经历，后来被凝练为校训中的"艰苦奋斗"。没有校舍就自己盖，没有条件就自己创，这是广东医人最朴素的起家方式，也是红医精神在和平年代的延续。' },
+
+  { name:'勇于开创', en:'PIONEERING SPIRIT',
+    obj:'广东医科大学东莞校区',
+    attr:'校史馆藏',
+    story:'从单一临床医学起步，广东医科大学不断开新局：与东莞理工学院共建医工融合联合创新学院，推出广东首批联合学士学位项目，覆盖"药学+应用化学""药学+材料科学与工程""电子信息工程+智能医学工程"。学校拥有临床医学、基础医学、公共卫生与预防医学、药学4个广东省高水平大学重点建设学科，7个学科进入ESI全球前1%，临床医学进入前2.3‰。在国家需要的新方向上，迈出第一步。' }
+];
+
+/* =========================================================================
+   湾区坐标：6 精神 × 3 地点（松山湖 / 香港 / 深圳）
+   每个地点含 longGoal（十五五长期目标）
+   ========================================================================= */
+const PLACES = [
+  /* ===== 0 政治坚定 ===== */
+  [
+    { city:'东莞', name:'松山湖科学城', short:'松山湖',
+      why:'松山湖是粤港澳大湾区综合性国家科学中心的先行启动区，中国散裂中子源等大科学装置坐落于此。广东医科大学与松山湖共建核酸药物产业学院和BNCT硼中子俘获治疗肿瘤装备工程技术研究中心，把基础研究转化为临床利器。当年高彪先生带着长征精神从枪林弹雨转向白手起家办教育，今天广东医人在这里把"科技报国"的信念接续下去。政治坚定，就是在国家需要的地方扎下根，把论文写在祖国大地上。',
+      posterWhy:'广东医与松山湖共建BNCT肿瘤装备中心，把大科学装置变成临床利器。',
+      proj:'松山湖 · 医工交叉前沿',
+      projDesc:'核酸药物产业学院、BNCT肿瘤装备工程技术研究中心。',
+      longGoal:'五年内参与一项 BNCT 或核酸药物相关的医工交叉课题，从整理数据做起，争取署名一份技术报告。' },
+    { city:'香港', name:'香港 · 香江学者计划（湾区项目）', short:'香港',
+      why:'高彪先生从湘江战役走到湛江建校，一生听从国家召唤。今天，广东医科大学学者入选"香江学者计划（湾区项目）"，赴香港指定大学开展为期两年的高水平博士后研究与产学研合作。香港是湾区科创的重要一极，广东医人在这里把个人成长嵌进国家战略——变的是岗位，不变的是"国家需要我去哪，我就去哪"的政治坚定。从战火中的战地救护到湾区里的科研协同，这条线一直没有断。',
+      posterWhy:'广东医学者入选香江学者计划，把个人成长嵌进国家战略。',
+      proj:'香港 · 香江学者计划（湾区项目）',
+      projDesc:'赴港高水平博士后研究、产学研合作。',
+      longGoal:'争取一次赴港交流或访学机会，把在香港学到的方法带回广东医的课堂与实验室。' },
+    { city:'深圳', name:'深圳 · 临床教学与医疗基地', short:'深圳',
+      why:'高彪先生一生听党召唤，从长征走到湛江建校。今天，广东医科大学在深圳布局多家非直属附属医院和临床医学院（如深圳宝安临床医学院/宝安区人民医院），把临床医学本科与研究生教学、规培资源直接引入深圳基层，大幅提升当地医院科研与诊疗水平。政治坚定不是抽象表态，而是国家要优质医疗下沉、我们就派师生下去；湾区要健康协同、我们就把课堂搬进医院。',
+      posterWhy:'广东医把临床教学资源引入深圳基层，服务先行示范区。',
+      proj:'深圳 · 临床教学与医疗基地',
+      projDesc:'非直属附属医院、临床医学院、医工交叉与产业转化。',
+      longGoal:'五年内参与一次深圳基层医院的教学或规培工作，把一门好课带到基层去。' }
+  ],
+  /* ===== 1 技术优良 ===== */
+  [
+    { city:'东莞', name:'松山湖科学城', short:'松山湖',
+      why:'建校初期，老一辈教师在煤油灯下手绘解剖挂图，撑起课堂；今天，广东医科大学在松山湖把"手绘"变成"硬核研发"。学校与松山湖共建核酸药物产业学院、BNCT硼中子俘获治疗肿瘤装备工程技术研究中心，依托中国散裂中子源等大科学装置开展医工交叉攻关。从一笔一画到一束中子，变的是工具，不变的是广东医人对技术精益求精的执念——技术优良，就是把每一件专业的事做到别人放心。',
+      posterWhy:'从手绘挂图到散裂中子源，广东医在松山湖攻关医工交叉。',
+      proj:'松山湖 · 医工交叉前沿',
+      projDesc:'核酸药物产业学院、BNCT肿瘤装备工程技术研究中心。',
+      longGoal:'五年内掌握一项可复用的实验或工程技能，并整理成一份能交给下一届的教程。' },
+    { city:'香港', name:'香港 · 香江学者计划（湾区项目）', short:'香港',
+      why:'老一辈教师手绘解剖挂图，把技术磨到极致；今天，广东医科大学生物医学工程学院等学者入选"香江学者计划（湾区项目）"，赴香港指定大学开展为期两年的高水平博士后研究与产学研合作。香港高校科研实力雄厚，广东医人带着临床一线的真问题去、带着技术方案回。技术优良，就是永远不满足于"够用"，把每一门手艺练到能真正解决问题、能经得起同行检验。',
+      posterWhy:'带着临床问题去香港，带着技术方案回湾区。',
+      proj:'香港 · 香江学者计划（湾区项目）',
+      projDesc:'赴港高水平博士后研究、产学研合作。',
+      longGoal:'读完一批本领域国际前沿文献，把其中一项技术方法带回自己的课题组。' },
+    { city:'深圳', name:'深圳 · 临床教学与医疗基地', short:'深圳',
+      why:'手绘挂图的时代过去了，技术优良的标准却更高。广东医科大学在深圳宝安等地共建临床医学院和附属医院，把本科与研究生教学、规培资源带到深圳基层；同时依托深圳雄厚的医疗器械与生物医药产业优势，联合本地医疗机构及企业开展智慧医疗、康复器械研发及临床试验转化，协助打通"实验室—临床—产业"通道。从画准一根血管到打通一条链条，广东医人用技术说话，让好技术真正落到病床边。',
+      posterWhy:'广东医打通"实验室—临床—产业"，让好技术落到病床边。',
+      proj:'深圳 · 临床教学与医疗基地',
+      projDesc:'非直属附属医院、临床医学院、医工交叉与产业转化。',
+      longGoal:'五年内参与一次智慧医疗或康复器械的临床转化项目，从头跟到尾。' }
+  ],
+  /* ===== 2 无私奉献 ===== */
+  [
+    { city:'东莞', name:'松山湖科学城', short:'松山湖',
+      why:'建校伊始，师生背着药箱深入雷州半岛及粤西各县农村、海岛与林场，参与疟疾、丝虫病、钩虫病等地方病普查与群防群治，1960年获评"全国文教战线先进单位"。今天，广东医科大学把这份无私奉献带到松山湖：与松山湖共建核酸药物产业学院和BNCT肿瘤装备工程技术研究中心，把大科学装置成果转化为患者用得起的治疗手段。从下乡普查到前沿研发，服务对象变了，"把论文写在祖国大地上"的初心没变。',
+      posterWhy:'从下乡普查到BNCT研发，广东医把论文写在祖国大地上。',
+      proj:'松山湖 · 医工交叉前沿',
+      projDesc:'核酸药物产业学院、BNCT肿瘤装备工程技术研究中心。',
+      longGoal:'五年内持续参与一项面向患者的科研项目，把成果落到可负担的治疗方案上。' },
+    { city:'香港', name:'香港 · 香江学者计划（湾区项目）', short:'香港',
+      why:'从雷州半岛的疫病普查到今天的大湾区协同，广东医人的无私奉献换了场景。学校学者入选"香江学者计划（湾区项目）"，赴香港指定大学开展两年博士后研究与产学研合作，把临床一线的真问题带到国际前沿平台。不是为了个人履历好看，而是把香港的科研资源引回来、把湾区的健康需求带出去。无私奉献，就是把"小我"放进"大湾区健康共同体"里，让一次访学变成一条可持续的合作通道。',
+      posterWhy:'广东医把香港科研资源引回来，服务湾区健康共同体。',
+      proj:'香港 · 香江学者计划（湾区项目）',
+      projDesc:'赴港高水平博士后研究、产学研合作。',
+      longGoal:'在港期间做一次面向湾区的健康科普分享，把前沿知识翻译成大众能听懂的话。' },
+    { city:'深圳', name:'深圳 · 临床教学与医疗基地', short:'深圳',
+      why:'建校初期师生下乡防治疟疾、丝虫病，1960年获评全国文教战线先进单位。今天，广东医科大学把无私奉献写进深圳：通过宝安临床医学院等平台，把临床医学本科与研究生教学、规培资源下沉到深圳基层医院，提升当地科研与诊疗水平；同时联合本地机构开展智慧医疗与康复器械研发。不求名利，只求基层患者少跑一趟路。无私奉献，在深圳就是让"家门口的好医院"越来越多。',
+      posterWhy:'广东医把优质资源下沉深圳基层，让家门口的好医院更多。',
+      proj:'深圳 · 临床教学与医疗基地',
+      projDesc:'非直属附属医院、临床医学院、医工交叉与产业转化。',
+      longGoal:'五年内在深圳基层医院累计服务满 100 小时，把名字留在排班表上。' }
+  ],
+  /* ===== 3 救死扶伤 ===== */
+  [
+    { city:'东莞', name:'松山湖科学城', short:'松山湖',
+      why:'2003年非典，何建猷教授带病挂帅湛江专家组，穿梭于发热门诊与隔离病房。今天，救死扶伤的战场延伸到松山湖：广东医科大学与松山湖共建BNCT硼中子俘获治疗肿瘤装备工程技术研究中心，依托中国散裂中子源攻坚重大疾病治疗装备，把基础研究成果转化为临床肿瘤治疗利器。从隔离病房到肿瘤治疗前沿，从守好一座城到攻关一种病，广东医人始终在最难的地方与死神抢人。',
+      posterWhy:'救死扶伤的战场延伸到松山湖，广东医攻坚肿瘤治疗装备。',
+      proj:'松山湖 · 医工交叉前沿',
+      projDesc:'核酸药物产业学院、BNCT肿瘤装备工程技术研究中心。',
+      longGoal:'五年内参与一次重大疾病治疗装备的研发或临床试验，把"救"往前挪一步。' },
+    { city:'香港', name:'香港 · 香江学者计划（湾区项目）', short:'香港',
+      why:'何建猷教授在非典中带病坚守，诠释了救死扶伤的分量。今天，广东医科大学学者通过"香江学者计划（湾区项目）"赴香港指定大学深造，研究方向直指临床难题。香港与广东医的临床资源互补，湾区急救、重症、肿瘤治疗协同正在加速。救死扶伤不再是一城一院的事，而是湾区医者共同作答的考题——广东医人在其中主动补位，把香港的前沿方法带回湛江、带回东莞。',
+      posterWhy:'湾区医者共同作答，广东医在救死扶伤中主动补位。',
+      proj:'香港 · 香江学者计划（湾区项目）',
+      projDesc:'赴港高水平博士后研究、产学研合作。',
+      longGoal:'五年内考取一项国际认可的急救或重症培训证书，并回到广东医带教。' },
+    { city:'深圳', name:'深圳 · 临床教学与医疗基地', short:'深圳',
+      why:'非典时何建猷教授带病守在一线；今天，救死扶伤的战场在深圳延续。广东医科大学在深圳布局多家非直属附属医院和临床医学院，把临床医学本科、研究生教学与规培资源引入深圳基层，联合本地机构与企业开展智慧医疗、康复器械研发与临床试验转化。从隔离病房到院前急救、从重症救治到康复护理，广东医人把"救死扶伤"做成一条完整的生命链，让每一次接力都更快一点。',
+      posterWhy:'广东医在深圳把救死扶伤做成一条完整生命链。',
+      proj:'深圳 · 临床教学与医疗基地',
+      projDesc:'非直属附属医院、临床医学院、医工交叉与产业转化。',
+      longGoal:'五年内成为深圳某家附院或社康的固定急救志愿者，随叫随到。' }
+  ],
+  /* ===== 4 艰苦奋斗 ===== */
+  [
+    { city:'东莞', name:'松山湖科学城', short:'松山湖',
+      why:'1958年5月，一批骨干教师从广州南下湛江，平整土地、搬运建材、搭设简易教学用房，首届医学生课余也一起修路搬砖、参与绿化，师生同心白手起家。六十多年后，艰苦奋斗的接力棒传到松山湖：广东医科大学在此共建核酸药物产业学院、BNCT肿瘤装备工程技术研究中心，从零起步攻关医工交叉前沿。校址从荒坡变成科学城，"自己动手、从无到有"的劲头一脉相承。',
+      posterWhy:'从荒坡建校到科学城攻关，广东医艰苦奋斗一脉相承。',
+      proj:'松山湖 · 医工交叉前沿',
+      projDesc:'核酸药物产业学院、BNCT肿瘤装备工程技术研究中心。',
+      longGoal:'五年内从零参与搭建一个实验室或一个课题方向，把"没有"变成"有"。' },
+    { city:'香港', name:'香港 · 香江学者计划（湾区项目）', short:'香港',
+      why:'1958年南下建校，师生搬砖和泥、白手起家；今天，广东医人把艰苦奋斗带到香港。学校学者入选"香江学者计划（湾区项目）"，赴香港指定大学开展两年博士后研究，在陌生环境里重新做学生、重新啃硬骨头。从湛江的荒坡到香港的实验室，艰苦奋斗不是吃苦本身，而是永远愿意从零开始、把最难走的那段路自己走通——这也是校训"艰苦奋斗"在新时代的写法。',
+      posterWhy:'从湛江荒坡到香港实验室，广东医永远愿意从零开始。',
+      proj:'香港 · 香江学者计划（湾区项目）',
+      projDesc:'赴港高水平博士后研究、产学研合作。',
+      longGoal:'在港两年完成一项独立课题，把最难的那部分自己啃下来。' },
+    { city:'深圳', name:'深圳 · 临床教学与医疗基地', short:'深圳',
+      why:'1958年从广州南下湛江，师生亲手平整土地、搭设简易校舍，首届学生在课余搬砖修路；今天，艰苦奋斗的舞台换到深圳。广东医科大学在深圳从零建起临床医学院和附属医院网络，把教学、规培、科研资源一点点铺开，联合本地机构开展智慧医疗与康复器械转化。深圳速度背后，是广东医人一砖一瓦的笨功夫——把"没有"变成"有"，把"薄弱"变成"高地"。',
+      posterWhy:'广东医在深圳从零建起临床医学院网络，笨功夫见真章。',
+      proj:'深圳 · 临床教学与医疗基地',
+      projDesc:'非直属附属医院、临床医学院、医工交叉与产业转化。',
+      longGoal:'五年内参与一家深圳基层医院或科室的从零建设，看着它一步步起来。' }
+  ],
+  /* ===== 5 勇于开创 ===== */
+  [
+    { city:'东莞', name:'松山湖科学城', short:'松山湖',
+      why:'从单一临床医学起步，广东医科大学陆续开出法医学、麻醉学等新专业，敢为人先写进校史；今天，学校在松山湖继续"开新局"——与松山湖共建核酸药物产业学院和BNCT硼中子俘获治疗肿瘤装备工程技术研究中心，推动医工融合与产学研深度协同，把大科学装置的基础研究成果转化为临床肿瘤治疗利器。7个学科进入ESI全球前1%，临床医学进入前2.3‰。勇于开创，就是把"不可能"做成"大湾区样板"。',
+      posterWhy:'广东医在松山湖开新局，7个学科进入ESI全球前1%。',
+      proj:'松山湖 · 医工交叉前沿',
+      projDesc:'核酸药物产业学院、BNCT肿瘤装备工程技术研究中心。',
+      longGoal:'五年内参与一件"没人做过"的医工交叉项目，哪怕只负责其中一个小模块。' },
+    { city:'香港', name:'香港 · 香江学者计划（湾区项目）', short:'香港',
+      why:'广东首批联合学士学位、7个ESI前1%学科，广东医科大学的"勇于开创"有目共睹。今天，学校学者入选"香江学者计划（湾区项目）"，赴香港指定大学开展为期两年的高水平博士后研究与产学研合作，把医工融合的触角伸向国际。香港是湾区对接全球的窗口，广东医人在这里开新路：不是等机会，而是造机会；不是跟随规则，而是参与写规则，把粤港校际合作做成可复制的机制。',
+      posterWhy:'广东医在香港开新路，参与写湾区规则。',
+      proj:'香港 · 香江学者计划（湾区项目）',
+      projDesc:'赴港高水平博士后研究、产学研合作。',
+      longGoal:'五年内推动一次粤港校际合作或联合培养项目落地，做那个先迈步的人。' },
+    { city:'深圳', name:'深圳 · 临床教学与医疗基地', short:'深圳',
+      why:'广东首批联合学士学位、医工融合联合创新学院，广东医科大学的开创基因由来已久。今天，学校在深圳把"开创"做成生态：依托深圳雄厚的医疗器械与生物医药产业优势，联合本地医疗机构及企业开展智慧医疗、康复器械研发及临床试验转化，打通"实验室—临床—产业"通道。从跨校联合学位到跨境产业协同，广东医人始终在没人走过的地方先迈一步，把一次试点做成一套可推广的方案。',
+      posterWhy:'广东医在深圳打通"实验室—临床—产业"通道，先迈一步。',
+      proj:'深圳 · 临床教学与医疗基地',
+      projDesc:'非直属附属医院、临床医学院、医工交叉与产业转化。',
+      longGoal:'五年内把一个小改进做成可复制的方案，推广到至少 3 家机构。' }
+  ]
+];
+
+/* =========================================================================
+   微行动：6 精神 × 3 专业族（与精神、专业对应）
+   ========================================================================= */
+const ACTIONS = [
+  /* 0 政治坚定 */
+  [
+    { full:'在见习科室晨会上用 3 分钟讲高彪先生从湘江战役到湛江建校的故事，请带教老师点评一句：今天的医者怎样算"政治坚定"。',
+      short:'晨会讲高彪先生从长征到建校的故事。' },
+    { full:'在药房或实验室学习角做一张"校史一页纸"，写清 1958 年建校的来龙去脉，贴出来给同学看。',
+      short:'做一张"校史一页纸"，贴在药房学习角。' },
+    { full:'报名一次校史陈列室志愿讲解，只讲高彪先生与白求恩医疗队这一件展品，讲给 10 个人听。',
+      short:'报名校史讲解，讲高彪与白求恩医疗队。' }
+  ],
+  /* 1 技术优良 */
+  [
+    { full:'在带教老师指导下完成一次规范操作示范（心肺复苏或无菌换药），录成 30 秒视频，回看并标出 3 处可以更准的细节。',
+      short:'完成一次规范操作示范，回看标出 3 处细节。' },
+    { full:'为科室整理一份常用药或检验项目的"一页纸速查卡"，核对 3 遍剂量与配伍，打印放在值班室。',
+      short:'整理"一页纸速查卡"，核对剂量与配伍。' },
+    { full:'做一张"大湾区健康数据"信息图，至少核实 3 个官方数据来源，发在班级群或朋友圈。',
+      short:'做一张"大湾区健康数据"信息图。' }
+  ],
+  /* 2 无私奉献 */
+  [
+    { full:'为社区一位老人测一次血压或血糖，做一次用药提醒，留一张大字版提示卡。',
+      short:'为一位老人测一次血压，留一张大字版提示卡。' },
+    { full:'设计一张"家庭小药箱整理指南"，标注近效期药品的处理方式，打印贴在宿舍楼或社区公告栏。',
+      short:'设计"家庭小药箱整理指南"并张贴。' },
+    { full:'报名一次校内外志愿服务（义诊、科普、导诊），至少服务 2 小时，结束后写 100 字复盘。',
+      short:'报名一次志愿服务，至少服务 2 小时。' }
+  ],
+  /* 3 救死扶伤 */
+  [
+    { full:'教会身边 3 个人做规范胸外按压，并在校园里找到一台 AED，把位置标注进手机地图。',
+      short:'教会 3 个人胸外按压，标注一台 AED。' },
+    { full:'在药房窗口贴一张 AED 位置图，向 3 位取药患者说明最近的 AED 在哪、怎么用。',
+      short:'药房贴 AED 位置图，向 3 位患者说明。' },
+    { full:'转发一条湾区急救培训报名信息，@ 一位同学一起报名，把时间记进日历。',
+      short:'转发急救培训信息，@ 一位同学一起报名。' }
+  ],
+  /* 4 艰苦奋斗 */
+  [
+    { full:'采访一位在基层工作 5 年以上的校友或医生，记录一句"最想对学弟学妹说的话"。',
+      short:'采访一位基层校友，记录一句话。' },
+    { full:'线上查资料，整理一份"基层卫生院常用药清单"，标注 3 个短缺品种和可替代方案。',
+      short:'整理"基层常用药清单"，标注 3 个短缺品种。' },
+    { full:'走一遍学校所在城市的一个老街区，拍 3 张照片，写 100 字观察：这里的健康服务还缺什么。',
+      short:'走一遍老街区，拍 3 张照片，写 100 字观察。' }
+  ],
+  /* 5 勇于开创 */
+  [
+    { full:'提出一个"让病房更温暖"的小改进（提示卡、流程优化、双语标识），写成一句话方案交给护士长。',
+      short:'提出一个"让病房更温暖"的小改进。' },
+    { full:'为一种常见药设计一张"患者看得懂"的用药说明卡（大字版），拍照留存并请药师点评。',
+      short:'为一种常见药设计"患者看得懂"的说明卡。' },
+    { full:'发起一个"十五五 · 我的健康小目标"打卡，邀请 5 位同学参与，坚持 21 天。',
+      short:'发起"十五五健康小目标"打卡，坚持 21 天。' }
+  ]
+];
+
+/* =========================================================================
+   状态与工具
+   ========================================================================= */
+const state = { major:'', majorGroup:-1, spiritIndex:-1, placeIndex:-1, code:'', visitorCount:0 };
+const $ = id => document.getElementById(id);
+
+function toast(msg){
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._timer); t._timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+function go(id){
+  if (id === 'p4') renderWheelPage();
+  if (id === 'p5') renderActionCard();
+  document.querySelectorAll('.page').forEach(p => { p.classList.remove('active'); p.scrollTop = 0; });
+  $(id).classList.add('active');
+}
+
+/* =========================================================================
+   不蒜子统计（site_uv = 开启过药箱的去重人数）
+   取值：轮询库写入的 #busuanzi_value_site_uv 文本——busuanzi.pure.mini.js
+         只把数字写进 DOM，不暴露全局变量，所以只能读 DOM。
+   兜底：取到 -> 上横幅 + 存 localStorage；取不到（超时/被拦截/本地 file:// 打开）
+         -> 沿用上次缓存值；连缓存都没有才显示占位符。
+         这样横幅上的统计人数不会因为不蒜子偶发不可用而"消失"。
+   ========================================================================= */
+const BZ_CACHE_KEY = 'hybz_site_uv_v1';
+
+function bzReadCache(){
+  try{
+    const o = JSON.parse(localStorage.getItem(BZ_CACHE_KEY) || 'null');
+    if (!o || typeof o.v !== 'number' || !isFinite(o.v) || o.v <= 0) return 0;
+    return o.v;                       /* 不设过期：宁可显示上次的数字，也不让数字消失 */
+  }catch(e){ return 0; }
+}
+
+function bzWriteCache(v){
+  try{ localStorage.setItem(BZ_CACHE_KEY, JSON.stringify({ v: v, t: Date.now() })); }catch(e){}
+}
+
+function bzPaint(v){
+  const txt = (v > 0) ? v.toLocaleString('zh-CN') : '—';
+  ['bannerCount1', 'bannerCount2'].forEach(function(id){
+    const el = $(id);
+    if (el) el.textContent = txt;
+  });
+}
+
+function pollBusuanzi(){
+  const MAX_TRIES = 80;               /* 80 x 250ms = 20s，足够覆盖慢速 CDN */
+  let tries = 0;
+  const cached = bzReadCache();       /* 首屏先用上次缓存值兜底，避免长时间空档 */
+  if (cached > 0 && state.visitorCount <= 0){ state.visitorCount = cached; bzPaint(cached); }
+  const check = () => {
+    const el = $('busuanzi_value_site_uv');
+    if (el){
+      const v = parseInt(String(el.textContent).replace(/[^\d]/g, ''), 10);
+      if (!isNaN(v) && v > 0){
+        state.visitorCount = v;
+        bzWriteCache(v);
+        bzPaint(v);
+        return;
+      }
+    }
+    if (++tries > MAX_TRIES){
+      bzPaint(state.visitorCount);    /* 无缓存时为 0 -> 显示占位符，不抛错 */
+      return;
+    }
+    setTimeout(check, 250);
+  };
+  check();
+}
+
+if (document.readyState === 'complete') pollBusuanzi();
+else window.addEventListener('load', pollBusuanzi);
+
+/* =========================================================================
+   P1 专业
+   ========================================================================= */
+function renderMajors(){
+  $('majorCards').innerHTML = MAJORS.map((g, gi) => `
+    <div class="major-card scanning" data-g="${gi}">
+      <span class="corner-tr"></span><span class="corner-bl"></span>
+      <div class="scan"></div>
+      <div class="mc-head">
+        <div class="signal"><i></i><i></i><i></i><i></i></div>
+        <span class="mc-name">${g.group}</span>
+        <span class="mc-code">${g.code}</span>
+        <span class="mc-lock">已锁定</span>
+      </div>
+      <div class="mc-chips">
+        ${g.list.map(m => `<span class="chip" data-g="${gi}" data-m="${m}">${m}</span>`).join('')}
+      </div>
+    </div>`).join('');
+
+  $('majorCards').querySelectorAll('.chip').forEach(c => {
+    c.addEventListener('click', () => {
+      $('majorCards').querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+      $('majorCards').querySelectorAll('.major-card').forEach(x => x.classList.remove('has-selected'));
+      c.classList.add('on');
+      c.closest('.major-card').classList.add('has-selected');
+      state.major = c.dataset.m;
+      state.majorGroup = +c.dataset.g;
+      const btn = $('toBoxBtn');
+      btn.disabled = false;
+      btn.textContent = '已选 ' + state.major + ' · 打开红医药箱';
+    });
+  });
+}
+
+$('openMajorBtn').addEventListener('click', () => {
+  $('openMajorBtn').style.display = 'none';
+  $('majorContent').classList.add('open');
+});
+
+$('toBoxBtn').addEventListener('click', () => {
+  if (!state.major){ toast('请先选择一个专业'); return; }
+  go('p2');
+});
+
+/* =========================================================================
+   P2 药箱
+   ========================================================================= */
+let boxOpening = false;
+
+$('medBox').addEventListener('click', function(){
+  if (boxOpening) return;
+  boxOpening = true;
+
+  const wrap = this;
+  wrap.classList.add('tapped');
+  setTimeout(() => wrap.classList.remove('tapped'), 350);
+  wrap.classList.add('opening');
+
+  setTimeout(() => {
+    $('mbLid').classList.add('open');
+    spawnParticles(wrap);
+  }, 350);
+
+  setTimeout(() => {
+    $('mbGlow').classList.remove('burst');
+    void $('mbGlow').offsetWidth;
+    $('mbGlow').classList.add('burst');
+  }, 700);
+
+  setTimeout(() => {
+    state.spiritIndex = Math.floor(Math.random() * SPIRITS.length);
+    renderSpirit(state.spiritIndex);
+    go('p3');
+    setTimeout(() => {
+      wrap.classList.remove('opening');
+      $('mbLid').classList.remove('open');
+      $('mbGlow').classList.remove('burst');
+      boxOpening = false;
+    }, 800);
+  }, 1800);
+});
+
+function spawnParticles(parent){
+  const rect = parent.getBoundingClientRect();
+  const cx = rect.left + rect.width / 2;
+  const cy = rect.top + rect.height * 0.55;
+  for (let i = 0; i < 18; i++){
+    const p = document.createElement('div');
+    p.className = 'mb-particle';
+    document.body.appendChild(p);
+    const angle = (Math.PI * 2 * i) / 18 + Math.random() * 0.3;
+    const dist = 80 + Math.random() * 120;
+    const dx = Math.cos(angle) * dist;
+    const dy = Math.sin(angle) * dist - 40 - Math.random() * 40;
+    p.style.left = (cx - 3) + 'px';
+    p.style.top = (cy - 3) + 'px';
+    p.style.transition = 'transform 1.2s cubic-bezier(.15,.6,.3,1), opacity 1.2s ease';
+    setTimeout(() => {
+      p.style.transform = `translate(${dx}px, ${dy}px) scale(0.3)`;
+      p.style.opacity = '0';
+    }, 10);
+    setTimeout(() => p.remove(), 1400);
+  }
+}
+
+/* =========================================================================
+   P3 精神
+   ========================================================================= */
+function setMedia(imgEl, src, label){
+  const wrap = imgEl.parentNode;
+  wrap.classList.remove('fallback');
+  imgEl.style.display = '';
+  imgEl.src = src;
+  wrap.setAttribute('data-label', label);
+  imgEl.onerror = function(){ this.style.display = 'none'; this.parentNode.classList.add('fallback'); };
+}
+
+function renderSpirit(i){
+  const s = SPIRITS[i];
+  setMedia($('spiritImg'), ASSETS.spiritImg[i], s.obj + '（待替换图片）');
+  $('spiritObjTag').textContent = s.obj;
+  $('spiritName').textContent = s.name;
+  $('spiritEn').textContent = s.en;
+  $('spiritStory').textContent = s.story;
+  $('spiritAttr').textContent = '—— ' + s.attr;
+}
+
+$('toWheelBtn').addEventListener('click', () => go('p4'));
+
+/* =========================================================================
+   P4 转盘
+   ========================================================================= */
+let spinning = false;
+
+function polar(cx, cy, r, deg){
+  const rad = (deg - 90) * Math.PI / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+}
+
+function buildWheelSVG(){
+  const cx = 160, cy = 160, r = 138;
+  const seg = 360 / 18;
+  let s = `<svg viewBox="0 0 320 320" class="wheel-svg" preserveAspectRatio="xMidYMid meet">`;
+
+  s += `<circle cx="${cx}" cy="${cy}" r="154" fill="#1A0505" stroke="rgba(201,162,39,.55)" stroke-width="2.5"/>`;
+  s += `<circle cx="${cx}" cy="${cy}" r="148" fill="none" stroke="rgba(201,162,39,.18)" stroke-width="1" stroke-dasharray="1 6"/>`;
+
+  for (let i = 0; i < 18; i++){
+    const a1 = i * seg, a2 = a1 + seg;
+    const p1 = polar(cx, cy, r, a1), p2 = polar(cx, cy, r, a2);
+    const fill = (i % 2 === 0) ? '#8E1B1B' : '#6B0E0E';
+    const stroke = 'rgba(201,162,39,.35)';
+
+    s += `<path d="M${cx},${cy} L${p1.x.toFixed(1)},${p1.y.toFixed(1)} A${r},${r} 0 0 1 ${p2.x.toFixed(1)},${p2.y.toFixed(1)} Z"
+      fill="${fill}" stroke="${stroke}" stroke-width="1" class="sector" id="sector-${i}" data-i="${i}"/>`;
+
+    const mid = a1 + seg / 2;
+    const tp = polar(cx, cy, r * 0.75, mid);
+    s += `<circle cx="${tp.x.toFixed(1)}" cy="${tp.y.toFixed(1)}" r="1.6" fill="rgba(244,238,228,.22)"/>`;
+  }
+
+  for (let i = 0; i < 6; i++){
+    const a = i * 60;
+    const p = polar(cx, cy, r, a);
+    s += `<line x1="${cx}" y1="${cy}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}"
+      stroke="rgba(201,162,39,.5)" stroke-width="1.6"/>`;
+  }
+
+  s += `<circle cx="${cx}" cy="${cy}" r="62" fill="#1A0505" stroke="rgba(201,162,39,.35)" stroke-width="1.5"/>`;
+  s += `</svg>`;
+  return s;
+}
+
+function highlightSector(i){
+  document.querySelectorAll('.sector').forEach(el => el.classList.remove('hl'));
+  const el = $('sector-' + i);
+  if (el) el.classList.add('hl');
+}
+
+function clearHighlight(){
+  document.querySelectorAll('.sector').forEach(el => el.classList.remove('hl'));
+}
+
+function renderWheelPage(){
+  $('wheelSvgWrap').innerHTML = buildWheelSVG();
+  spinning = false;
+  state.placeIndex = -1;
+  $('wheelHub').classList.remove('spinning');
+  $('wheelHub').innerHTML = '"转"出<br>精彩';
+  $('mapTip').textContent = '18 个湾区坐标 · "转"出你的十五五';
+  $('placePanel').classList.remove('anim');
+  $('placePanel').style.display = 'none';
+}
+
+$('wheelHub').addEventListener('click', () => {
+  if (spinning) return;
+  spinning = true;
+  $('wheelHub').classList.add('spinning');
+  $('mapTip').textContent = '灯光跑动中…';
+  $('placePanel').classList.remove('anim');
+  $('placePanel').style.display = 'none';
+
+  const placeIdx = Math.floor(Math.random() * 3);
+  state.placeIndex = placeIdx;
+
+  const targetSector = state.spiritIndex * 3 + placeIdx;
+  const k = 2 + Math.floor(Math.random() * 2);
+  const totalSteps = targetSector + 18 * k;
+
+  let step = 0;
+  let current = 0;
+
+  const tick = () => {
+    if (step > 0) current = (current + 1) % 18;
+    highlightSector(current);
+    step++;
+
+    if (step >= totalSteps){
+      clearHighlight();
+      highlightSector(targetSector);
+      spinning = false;
+      $('wheelHub').classList.remove('spinning');
+      $('wheelHub').innerHTML = '再"转"<br>一次';
+      setTimeout(() => showPlaceResult(placeIdx), 400);
+      return;
+    }
+
+    const progress = step / totalSteps;
+    const delay = 40 + Math.pow(progress, 3) * 420;
+    setTimeout(tick, delay);
+  };
+
+  tick();
+});
+
+function showPlaceResult(idx){
+  const p = PLACES[state.spiritIndex][idx];
+
+  setMedia($('ppImg'), ASSETS.placeImg[idx], '湾区场景 · ' + p.name + '（待替换图片）');
+  $('ppImgTag').textContent = p.city + ' · ' + p.short;
+  $('ppCity').textContent = p.city;
+  $('ppName').textContent = p.name;
+  $('ppWhy').textContent = p.why;
+  $('ppProjName').textContent = p.proj;
+  $('ppProjDesc').textContent = p.projDesc;
+  $('ppGoal').textContent = p.longGoal;
+  $('mapTip').textContent = '落在了 ' + p.city + ' · ' + p.short;
+
+  const panel = $('placePanel');
+  panel.style.display = 'block';
+  void panel.offsetWidth;
+  panel.classList.add('anim');
+}
+
+$('ppBtn').addEventListener('click', () => {
+  if (state.placeIndex < 0) return;
+  go('p5');
+});
+
+/* =========================================================================
+   P5 行动卡
+   ========================================================================= */
+function renderActionCard(){
+  if (state.spiritIndex < 0 || state.placeIndex < 0) return;
+  const sp = SPIRITS[state.spiritIndex];
+  const place = PLACES[state.spiritIndex][state.placeIndex];
+  const action = ACTIONS[state.spiritIndex][state.majorGroup];
+
+  $('chainSpirit').textContent = sp.name;
+  $('chainPlace').textContent = place.city + ' · ' + place.name;
+  $('chainMajor').textContent = state.major;
+  $('chainAction').textContent = action.full;
+
+  $('chainGoalLbl').textContent = '十五五 · "医"路"湾"美 · 与「' + place.short + '」同行';
+  $('chainGoal').textContent = place.longGoal;
+
+  $('chainLink').innerHTML =
+    '<b>为什么在这里做：</b>' + place.posterWhy +
+    '<br><br><b>红医精神不是墙上的四个字，是在 ' + place.city + ' 做成的这一件小事。</b>';
+}
+
+/* =========================================================================
+   P6 海报
+   ========================================================================= */
+const FONT = '"PingFang SC","Noto Sans SC","Microsoft YaHei",system-ui,sans-serif';
+
+function paintText(ctx, text, x, y, opt){
+  opt = opt || {};
+  const size = opt.size || 24, weight = opt.weight || 400;
+  const color = opt.color || '#F4EEE4', align = opt.align || 'left', ls = opt.ls || 0;
+  ctx.font = weight + ' ' + size + 'px ' + FONT;
+  ctx.fillStyle = color;
+  ctx.textBaseline = 'alphabetic';
+  if (!ls){ ctx.textAlign = align; ctx.fillText(text, x, y); return; }
+  const chars = [...text];
+  let total = 0;
+  chars.forEach(c => total += ctx.measureText(c).width + ls);
+  total -= ls;
+  let cx = align === 'center' ? x - total / 2 : x;
+  ctx.textAlign = 'left';
+  chars.forEach(c => { ctx.fillText(c, cx, y); cx += ctx.measureText(c).width + ls; });
+}
+
+function paintLines(ctx, text, x, y, maxW, lh, opt){
+  opt = opt || {};
+  const size = opt.size || 24, weight = opt.weight || 400, color = opt.color || '#F4EEE4';
+  ctx.font = weight + ' ' + size + 'px ' + FONT;
+  ctx.fillStyle = color; ctx.textAlign = 'left';
+  const chars = [...text];
+  let line = ''; const lines = [];
+  for (const c of chars){
+    if (ctx.measureText(line + c).width > maxW && line){ lines.push(line); line = c; }
+    else line += c;
+  }
+  lines.push(line);
+  lines.forEach((l, i) => ctx.fillText(l, x, y + i * lh));
+  return lines.length;
+}
+
+function roundRect(ctx, x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+function drawQR(ctx, x, y, size){
+  const n = 21, cell = size / n;
+  ctx.fillStyle = '#F4EEE4'; ctx.fillRect(x, y, size, size);
+  ctx.fillStyle = '#2B0808';
+  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++)
+    if (Math.random() > 0.55) ctx.fillRect(x + i * cell, y + j * cell, cell, cell);
+  const finder = (px, py) => {
+    ctx.fillStyle = '#F4EEE4'; ctx.fillRect(px - cell, py - cell, 9 * cell, 9 * cell);
+    ctx.fillStyle = '#2B0808'; ctx.fillRect(px, py, 7 * cell, 7 * cell);
+    ctx.fillStyle = '#F4EEE4'; ctx.fillRect(px + cell, py + cell, 5 * cell, 5 * cell);
+    ctx.fillStyle = '#2B0808'; ctx.fillRect(px + 2 * cell, py + 2 * cell, 3 * cell, 3 * cell);
+  };
+  finder(x, y); finder(x + (n - 7) * cell, y); finder(x, y + (n - 7) * cell);
+}
+
+function encodeCode(sp, pl, mg){
+  const n = sp * 9 + pl * 3 + mg;
+  const chk = (sp + pl + mg + n) % 36;
+  return n.toString(36).toUpperCase().padStart(2,'0') + chk.toString(36).toUpperCase();
+}
+
+function buildPoster(){
+  const W = 750, H = 1480;
+  const cv = document.createElement('canvas');
+  cv.width = W; cv.height = H;
+  const ctx = cv.getContext('2d');
+  const sp = SPIRITS[state.spiritIndex];
+  const place = PLACES[state.spiritIndex][state.placeIndex];
+  const action = ACTIONS[state.spiritIndex][state.majorGroup];
+
+  /* 背景 */
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, '#7C1717'); bg.addColorStop(.42, '#4B0E0E'); bg.addColorStop(1, '#1E0505');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+  const rg = ctx.createRadialGradient(W * .5, H * .26, 0, W * .5, H * .26, W * .95);
+  rg.addColorStop(0, 'rgba(201,162,39,.24)'); rg.addColorStop(1, 'rgba(201,162,39,0)');
+  ctx.fillStyle = rg; ctx.fillRect(0, 0, W, H);
+
+  for (let x = 58; x < W - 40; x += 26)
+    for (let y = 58; y < H - 40; y += 26){
+      ctx.fillStyle = 'rgba(201,162,39,0.11)'; ctx.fillRect(x, y, 1.6, 1.6);
+    }
+
+  const nc = document.createElement('canvas'); nc.width = nc.height = 140;
+  const nx = nc.getContext('2d'); const idt = nx.createImageData(140, 140);
+  for (let i = 0; i < idt.data.length; i += 4){
+    const v = 200 + Math.random() * 55;
+    idt.data[i] = idt.data[i + 1] = idt.data[i + 2] = v;
+    idt.data[i + 3] = Math.random() * 15;
+  }
+  nx.putImageData(idt, 0, 0);
+  ctx.fillStyle = ctx.createPattern(nc, 'repeat'); ctx.fillRect(0, 0, W, H);
+
+  ctx.strokeStyle = 'rgba(201,162,39,.35)'; ctx.lineWidth = 2;
+  ctx.strokeRect(36, 36, W - 72, H - 72);
+
+  /* 顶部 */
+  paintText(ctx, '"医"箱情愿 · 我的十五五建功卡', W / 2, 100,
+    { size: 20, weight: 600, color: '#E8C86A', align: 'center', ls: 2 });
+  paintText(ctx, 'RED MEDICINE SPIRIT × BAY AREA × YOUTH ACTION', W / 2, 134,
+    { size: 9.5, weight: 400, color: 'rgba(244,238,228,.4)', align: 'center', ls: 1.5 });
+
+  ctx.strokeStyle = 'rgba(201,162,39,.28)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(76, 164); ctx.lineTo(674, 164); ctx.stroke();
+
+  /* ① 专业 */
+  paintText(ctx, '① "医"键选专业', 76, 204, { size: 11, weight: 500, color: 'rgba(201,162,39,.85)', ls: 3 });
+  paintText(ctx, state.major, 76, 244, { size: 26, weight: 800, color: '#F4EEE4', ls: 2 });
+
+  /* ② 精神 */
+  paintText(ctx, '② "医"脉相承 · 红医精神', 76, 300, { size: 11, weight: 500, color: 'rgba(201,162,39,.85)', ls: 3 });
+  paintText(ctx, sp.name, 76, 350, { size: 50, weight: 900, color: '#F3DA92', ls: 4 });
+  paintText(ctx, sp.en, 76, 378, { size: 11, color: 'rgba(244,238,228,.42)', ls: 2 });
+
+  /* ③ 地点 */
+  paintText(ctx, '③ "湾"里挑一 · 湾区坐标', 76, 430, { size: 11, weight: 500, color: 'rgba(201,162,39,.85)', ls: 3 });
+  paintText(ctx, place.city, 76, 480, { size: 38, weight: 900, color: '#F4EEE4', ls: 3 });
+  paintText(ctx, place.name, 76, 510, { size: 15, color: 'rgba(244,238,228,.6)', ls: 1 });
+
+  roundRect(ctx, 76, 534, 598, 96, 12);
+  ctx.fillStyle = 'rgba(244,238,228,.055)'; ctx.fill();
+  ctx.strokeStyle = 'rgba(201,162,39,.2)'; ctx.lineWidth = 1.2; ctx.stroke();
+  ctx.fillStyle = 'rgba(201,162,39,.7)'; ctx.fillRect(76, 534, 4, 96);
+  paintLines(ctx, place.posterWhy, 102, 568, 546, 32,
+    { size: 18, weight: 500, color: 'rgba(244,238,228,.85)' });
+
+  ctx.strokeStyle = 'rgba(201,162,39,.24)'; ctx.beginPath();
+  ctx.moveTo(76, 664); ctx.lineTo(674, 664); ctx.stroke();
+
+  /* ④ 第一件小事 */
+  paintText(ctx, '④ 十 五 五 · 第 一 件 "医"事', 76, 706,
+    { size: 11, weight: 500, color: 'rgba(201,162,39,.85)', ls: 3 });
+
+  roundRect(ctx, 76, 724, 598, 116, 14);
+  ctx.fillStyle = 'rgba(201,162,39,.11)'; ctx.fill();
+  ctx.strokeStyle = 'rgba(201,162,39,.45)'; ctx.lineWidth = 1.4; ctx.stroke();
+  paintLines(ctx, action.short, 102, 764, 546, 40,
+    { size: 24, weight: 700, color: '#E8C86A' });
+
+  /* ⑤ 长期目标 */
+  paintText(ctx, '⑤ 十 五 五 · "医"路"湾"美', 76, 878,
+    { size: 11, weight: 500, color: 'rgba(201,162,39,.85)', ls: 3 });
+
+  roundRect(ctx, 76, 896, 598, 136, 14);
+  ctx.fillStyle = 'rgba(244,238,228,.055)'; ctx.fill();
+  ctx.strokeStyle = 'rgba(201,162,39,.32)'; ctx.lineWidth = 1.2; ctx.stroke();
+  ctx.fillStyle = 'rgba(201,162,39,.7)'; ctx.fillRect(76, 896, 4, 136);
+  paintLines(ctx, place.longGoal, 102, 934, 546, 34,
+    { size: 19, weight: 500, color: 'rgba(244,238,228,.85)' });
+
+  ctx.strokeStyle = 'rgba(201,162,39,.24)'; ctx.beginPath();
+  ctx.moveTo(76, 1072); ctx.lineTo(674, 1072); ctx.stroke();
+
+  /* 底部标签 */
+  paintText(ctx, '#我的十五五建功卡#', 76, 1122,
+    { size: 22, weight: 700, color: '#E8C86A', ls: 1 });
+  paintText(ctx, '广东医科大学 · 校团委', 76, 1158, { size: 15, color: 'rgba(244,238,228,.55)' });
+  paintText(ctx, '十五五 · 粤港澳大湾区', 76, 1188, { size: 15, color: 'rgba(244,238,228,.55)' });
+
+  paintText(ctx, '分享码', 578, 1114,
+    { size: 11, weight: 400, color: 'rgba(244,238,228,.5)', align: 'center', ls: 2 });
+  paintText(ctx, state.code || '---', 578, 1160,
+    { size: 28, weight: 900, color: '#F3DA92', align: 'center', ls: 6 });
+  drawQR(ctx, 556, 1174, 44);
+
+  paintText(ctx, '红医精神不在墙上，在你明天做的那一件小事里。', W / 2, 1272,
+    { size: 15, weight: 500, color: 'rgba(244,238,228,.6)', align: 'center', ls: 1 });
+
+  return cv.toDataURL('image/png');
+}
+
+$('toPosterBtn').addEventListener('click', () => {
+  if (state.spiritIndex < 0 || state.placeIndex < 0){ toast('请先完成前面三步'); return; }
+  state.code = encodeCode(state.spiritIndex, state.placeIndex, state.majorGroup);
+  $('codeDisplay').textContent = state.code;
+  $('posterImg').src = buildPoster();
+  if (state.visitorCount > 0) bzPaint(state.visitorCount);
+  go('p6');
+});
+
+/* =========================================================================
+   分享
+   ========================================================================= */
+function getShareText(){
+  const sp = SPIRITS[state.spiritIndex];
+  const place = PLACES[state.spiritIndex][state.placeIndex];
+  const action = ACTIONS[state.spiritIndex][state.majorGroup].short;
+  return '我的十五五建功卡：\n' +
+    '专业：' + state.major + '\n' +
+    '红医精神：' + sp.name + '\n' +
+    '湾区坐标：' + place.city + ' · ' + place.name + '\n' +
+    '我的行动：' + action + '\n' +
+    '长期目标：' + place.longGoal + '\n' +
+    '分享码：' + state.code + '\n' +
+    '#我的十五五建功卡# #红医精神# #湾区青年建功#';
+}
+
+$('saveTipBtn').addEventListener('click', () => {
+  toast('长按上方海报，选择“保存图片”即可');
+});
+
+$('copyBtn').addEventListener('click', () => {
+  const txt = getShareText();
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt)
+      .then(() => toast('文案已复制，去微信/小红书粘贴发布吧'))
+      .catch(() => toast('复制失败，请手动选中文本复制'));
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = txt;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); toast('文案已复制，去微信/小红书粘贴发布吧'); }
+    catch(e){ toast('复制失败，请长按海报保存后手动配文'); }
+    document.body.removeChild(ta);
+  }
+});
+
+$('sysShareBtn').addEventListener('click', async () => {
+  const txt = getShareText();
+  if (navigator.share){
+    try{
+      await navigator.share({ title:'我的十五五建功卡', text: txt });
+      toast('已调起系统分享');
+    }catch(e){ /* 用户取消 */ }
+  } else {
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt)
+        .then(() => toast('已复制文案 · 打开微信/小红书粘贴即可'))
+        .catch(() => toast('请长按海报保存，并手动配文发布'));
+    } else {
+      toast('请长按海报保存，并手动配文发布');
+    }
+  }
+});
+
+$('restartBtn').addEventListener('click', () => {
+  state.major = ''; state.majorGroup = -1;
+  state.spiritIndex = -1; state.placeIndex = -1;
+  state.code = '';
+  $('posterImg').removeAttribute('src');
+  $('toBoxBtn').disabled = true;
+  $('toBoxBtn').textContent = '请先"医"键选专业';
+  $('majorCards').querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+  $('majorCards').querySelectorAll('.major-card').forEach(x => x.classList.remove('has-selected'));
+  $('openMajorBtn').style.display = '';
+  $('majorContent').classList.remove('open');
+  go('p1');
+});
+
+/* =========================================================================
+   初始化
+   ========================================================================= */
+renderMajors();
+</script>
+</body>
+</html>
